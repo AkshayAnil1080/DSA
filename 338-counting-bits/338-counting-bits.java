@@ -9,13 +9,13 @@ class Solution {
         }
         return ans;
     }
+//     theta(setbitcount) // brain kerninngams algo
     int count_set_bits(int n)
     {int c=0;
          while(n>0)
          {
-             if((n&1)==1)
+             n=n&(n-1);
                  c++;
-             n=n/2;
          }
      return c;
     }
