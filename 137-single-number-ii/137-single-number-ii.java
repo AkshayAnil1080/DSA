@@ -1,15 +1,18 @@
 class Solution {
     public int singleNumber(int[] nums) {
-          HashMap<Integer, Integer> m = new HashMap<>();
-        for( int i =0;i<nums.length; i++)
+        int res=0;
+        for( int i=0; i<32;i++)
         {
-            m.put(nums[i], m.getOrDefault(nums[i],0)+1);                                                if((m.get(nums[i]))==3)
-                    m.remove(nums[i]);
+            int ans=0;
+            for( int j =0; j<nums.length; j++)
+            {
+                if( (nums[j] & (1<<i)) !=0)
+                    ans++;
+                  
+            }
+            if(ans%3==1)
+            res+= (1<<i);
         }
-    for( Map.Entry<Integer, Integer> e :  m.entrySet())
-        return e.getKey(); 
-       
-        return 0;
+        return res;
     }
 }
-
