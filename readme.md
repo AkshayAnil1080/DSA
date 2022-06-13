@@ -1,7 +1,8 @@
 # Accelerating_My_Dream_With_Techdose
+<a href="https://docs.google.com/spreadsheets/d/1oKnWkzI2U3eQFrZtYo7U-r2QhnpxNJn2zFnz9nFTJZM/edit#gid=0">Assignment Link</a>
 
 ## Day1 pg 1-9
-	* Time Complexity Analysis
+	* -Time Complexity Analysis
 	* MasterTheorem
 
 
@@ -35,5 +36,13 @@
 		e. Count structurally unique BSTs with N keys.
 		f. In a NxN matrix number of ways to to reach from bottom left -> top right diagonal using paths on either side of diagonal
 		g. All possible BT with given inorder traversal
-	HW2. Read article/blog on c,e,f.
+	HW. Read article/blog on c,e,f.
+## Day4 pg 29-35
+	* Arays
+	1.Sum of integers(N<=40), each value <=10^9, det the max sum subset having sum<=S , S<=10^18 - 
+	2^N, DP(0-1 Knapsack) N*S - Binary Search (n* 2^n/2)
+	2. Range Addition - grad[L]+=x, grad[R+1]-=x - (n)
+	3. Binary Search - Sorted Array, Rotated Sorted Array, Peak Ele, 
+	BS on assignmen prob, Allocating min number of pages - (n*log(sum)
+	
 	
