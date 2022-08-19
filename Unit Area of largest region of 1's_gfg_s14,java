@@ -1,0 +1,47 @@
+https://practice.geeksforgeeks.org/problems/length-of-largest-region-of-1s-1587115620/1
+https://practice.geeksforgeeks.org/viewSol.php?subId=01bafec450581d912de3058bf7f4ea77&pid=701276&user=akshayanil
+class Solution
+{
+    int c;//Function to find unit area of the largest region of 1s.
+    public int findMaxArea(int[][] grid)
+    {
+        // Code here
+        int m=grid.length;
+        int n = grid[0].length;
+        int ans=0;
+        for(int i =0;i<m; i++)
+        {
+            for( int j=0; j<n ;j++)
+            {
+                if(grid[i][j]==1)  // marking vis else make 2d vis array and check
+                {
+                    c=0;
+                    dfs(grid, i,j,m,n); // call dfs for each cell,c++ if ==1
+                }
+            ans= Math.max(ans,c);
+            }
+        }
+        return min;
+    
+    }
+    void dfs(int[][] grid ,int i, int j, int m , int n)
+    {
+        if(i<0 || i>=m || j<0 || j>=n)  // checking isSafe pts.
+        return;
+        
+        if(grid[i][j]==1)  // if not visited , recur in all 8 dir.
+        {
+            grid[i][j]=0; // marking its vis, we dont want to go again
+            c++;
+            dfs(grid, i,j+1,m,n);
+            dfs(grid, i,j-1,m,n);
+            dfs(grid, i+1,j,m,n);
+            dfs(grid, i-1,j,m,n);
+            dfs(grid, i-1,j+1,m,n);
+            dfs(grid, i+1,j+1,m,n);
+            dfs(grid, i-1,j-1,m,n);
+            dfs(grid, i+1,j-1,m,n);
+        }
+    }
+    
+}
