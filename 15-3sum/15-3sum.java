@@ -11,8 +11,8 @@ class Solution {
     
         for( int i =0; i<nums.length-2; i++)
         {
-            if(i==0 || (i>0 && nums[i]!=nums[i-1])) // check if same ele not present else will add dup licate lists.
-            {
+          if(i>0 && nums[i]==nums[i-1]) continue; // check if same ele not present else will add dup licate lists.
+            
                 int low =i+1;
                 int high = nums.length -1;
                 int sum = 0-nums[i]; // sum to findfor pair
@@ -36,7 +36,7 @@ class Solution {
 
                     else low++;
                 }
-            }
+            
         }
         return al;
     
