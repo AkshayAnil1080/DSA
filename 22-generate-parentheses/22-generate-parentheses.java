@@ -25,3 +25,11 @@ class Solution {
 //open ins number of '(' that should be addeded only if<n,
 //close is number of ")" that should be added only if<open
 // as we can every ans start from (. and we do not want asnwers like  "())(" see the tree
+// opt - we can use String Builder in here, to make complexity of O(1) while appeding in curr_str.
+// M2 -how its is diff from m1 - 
+// Instead of adding '(' or ')' every time as in Approach 1, let's only add them when we know it will remain a valid sequence. We can do this by keeping track of the number of opening and closing brackets we have placed so far.
+// TC:  N th Catylan Number
+
+//1 m2 - We can generate all 2^{2n}
+// m3 - Closure numbe
+ 
