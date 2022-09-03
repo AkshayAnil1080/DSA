@@ -44,5 +44,5 @@ class Solution {
     }
 }
 
-// TC: O(n*m * (4*word.length)
+// TC: O(3^(MN))
 // SC: O(n*m) +O(word.length) -  vis array and rec stack
