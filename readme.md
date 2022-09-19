@@ -81,7 +81,13 @@
 	7. radix
 	8. bucket
 ## Day6
-	* STACKS, QUEUE, DEQUE
+	* STACKS, QUEUE,
+	* DEQUE
+	1. Simple, Circular, Dequeu, Priority
+	2. Expression Evaluation
+	3. postfix Evaluation
+	4. Stack Using Queue
+	5. Implement a Stack Using One Queue
 ## Day7
 	* HASHING
 	a. Chaining - arr, ll, selfbalacning - logl(bes)
@@ -90,7 +96,94 @@
 		-quadratic probing
 		-double hashing
 	c. Rehashing
-	
+## HEAP
+	1. Max and Min heap
+    2. Internal node >= Leaf node
+    3. Range of leaf node = floor(n/2) +1 to n.
+    4. Range of Internal Node = 1 to floor(n/2)
+    5. Max node at ht h = 2powh : h=0,1,2,3...
+    6. Heapify Algo
+    7. Build Heap
+    8. Extract_Min
+    9. Insert ele
+    10. Increase key
+    11. Decrese key for Max heap
+    12. heap Sort
+
+## TREE
+    1. FULL BT -0 or 2 children
+    2. Complete BT -  which all the levels are completely filled except possibly the lowest one, which is filled from the left.
+    3. Balanced BT 
+    4. Degenerate/Skewed/Pathological Tree
+    5. for Full BT -  LeafNode = Int Node+1
+    6. For k arr Tree -  L =(k-1)*IN+1
+    7. pre, in, Post , Level order
+    8. Construct BT - poss only from In + (pRe/post) is given
+    9. Inorder - itr order(Stack)- Morris Traversal -> Threaded BT
+    10. Impl of BT with Array
+    11. Continuous, Foldabel(Mirro), Expression trees
+    12. Convert BL to DLL
+    13. Balamced BST (avl)
+    14. Directory File System -  File System Imp (LCRS) - Left Child right Sibling Tree
+    15. Why not n arr tree for file dir => no space opt
+
+## Greedy
+    1. Decision Tree
+    2. Fractional KnapSack
+    3. Huffman Coding
+    4. Job Scheduling prob
+    
+## RECURSION
+    1. Fibonacci
+    2. generate Subsets
+    3. String permutation Problem
+    4. Recusrion with BackTracking
+    5. What is Pruning - removing a part from search such that its gaurenteed
+    6. Recucruos with Divide and Conquer - merge Sort
+## Trie
+    1. Remove all instance - we->0 , remove 1 instance -> we--
+    2. Store a bunch of name(10pow6) and search if name is present
+        m1 - hashmap/Set - rolling hash
+        m2 - Trie O(word_len)
+    3. (a+b)%m = ((a%m) + (b%m))%m
+
+## SEGMENT TREE
+    1. to make balanced BT, divide arr into two halves
+    2. No overlap, Partial Overlap, totol Overlap
+    3. buildTree() , Query(), updateNode(),
+    4. Range Sum,Min/Max, XOR, GCD/LCM, Query
+    5. Find Count of Zeros in range Query
+    
+## GRAPHS
+    1. Directed, undirected, Cyclic, Weighted, Unweighted, Sparse/dense, full connected, Spanning Tree
+    2. DFS, BFS, Disjoint Set, Rank, Union, path Compression
+    3. topological Sort via DFS, BFS(Khans Algo)
+    App. Dete Cycle in undirected graph, Order of elements
+    4. Cycle Detection
+        m1 - DFS(2 colors - UG, 3 colors - DG)
+        m2 = Disjoint Set - UG
+        m3 = topologicalSort - DG
+        m4 = BFS - UG.
+    5. Graph is tree or not ? 1. no cycle 2. 1 component
+    6. Bipartate graph
+    7. Spanning Tree - Prims(Greedy) , kruskals
+    8. Dijkstras
+    9. Rechability Prob - All pairs Shortest path(Floydd warshall Algo)
+    
+## DP
+    1. BT - parsing all poss paths - Recursion , DP, Greesy(fastest)
+    2. 0-1KnapSack
+    3. Subset Sum
+    4. Count Subsets with given Sum
+    5. Can u divide into two subsets equally
+    6. Coin Change Prob
+    7. Subsequences, substring
+    8. memorization
+    9. LCS
+    10. LIS
+    11. Edit Distance(Levenshthein Distance Algo)
+    12. Matrix Chain Multiplication
+
 
 	
 	
