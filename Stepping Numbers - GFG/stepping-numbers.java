@@ -33,54 +33,56 @@ class GFG
 
 
 //User function Template for Java
-//TC:  O(n-m)*log(n-m) = > 10^7 * log10^7 > 10^8 - gives TLE
 
 class Solution{
+    
     int count=0;
     int steppingNumbers(int n, int m){
         // code here
-        
-        for(int i=0; i<=9; i++)
+        for(int i=0; i<=9 ; i++)
         {
-            dfs(n,m,i);
+            bfs(n, m, i);
         }
         return count;
     }
-    
-    void dfs(int n, int m, int x)
+    void bfs(int n, int m , int start_pt)
     {
-    
-            if(x >=n && x<=m)
+        Queue<Integer> q = new LinkedList<>();
+        q.add(start_pt);
+        
+        while(!q.isEmpty())
+        {
+            int x = q.poll();  // x is curr_stepnum
+            
+            if(x>= n && x<=m) 
             {
                 count++;
-                // System.out.println(x+" " + start_pt);
+                // System.out.print(x + " ");
             }
             
-            if(x ==0  || x>m )
+            //1.
+            if(x==0 || x>m)
             {
-               return;
+                continue;
             }
+            int lastDig = x%10;
+            //2.
+            int a = x*10 + (lastDig -1);
+            int b = x*10 + (lastDig + 1);
             
-            int lastDig =  x%10;
-            // process the neighbors from x;
-            int a = x*10 + (lastDig-1);
-            int b = x*10 + (lastDig+1);
-            
+            // 3. 
             if(lastDig==0)
-            dfs(n,m,b);
-            // q.add(b);  // for 10 we cannot add 99 but we can add 101
-            
-            else if(lastDig==9)
-            dfs(n,m,a);
-            // q.add(a); // for 9 we cannot add 100 but we can add 98
-            
-            else
             {
-                dfs(n,m,a);
-                dfs(n,m,b);
-                // q.add(a); q.add(b);
+                q.add(b); // for eg 10 - we cannot add 99 but we can add 101
+            }
+            else if(lastDig==9)
+            {
+                q.add(a); // for eg 9  - we can add 98 but we cannot add 100
             }
             
-        
+            else {
+                q.add(a); q.add(b);
+            }
+        }
     }
 }
