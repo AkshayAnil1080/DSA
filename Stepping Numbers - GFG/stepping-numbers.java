@@ -41,18 +41,14 @@ class Solution{
         // code here
         for(int i=0; i<=9 ; i++)
         {
-            bfs(n, m, i);
+            dfs(n, m, i);
         }
         return count;
     }
-    void bfs(int n, int m , int start_pt)
+    void dfs(int n, int m , int x)
     {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(start_pt);
-        
-        while(!q.isEmpty())
-        {
-            int x = q.poll();  // x is curr_stepnum
+       
+            
             
             if(x>= n && x<=m) 
             {
@@ -63,7 +59,7 @@ class Solution{
             //1.
             if(x==0 || x>m)
             {
-                continue;
+                return;
             }
             int lastDig = x%10;
             //2.
@@ -73,16 +69,20 @@ class Solution{
             // 3. 
             if(lastDig==0)
             {
-                q.add(b); // for eg 10 - we cannot add 99 but we can add 101
+                dfs(n,m,b);
+                // q.add(b); // for eg 10 - we cannot add 99 but we can add 101
             }
             else if(lastDig==9)
             {
-                q.add(a); // for eg 9  - we can add 98 but we cannot add 100
+                dfs(n,m,a);
+                // q.add(a); // for eg 9  - we can add 98 but we cannot add 100
             }
             
             else {
-                q.add(a); q.add(b);
+                 dfs(n,m,a);
+                  dfs(n,m,b);
+                // q.add(a); q.add(b);
             }
-        }
+        
     }
 }
