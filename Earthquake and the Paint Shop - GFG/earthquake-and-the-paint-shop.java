@@ -24,7 +24,7 @@ class GFG {
 
 
 // User function Template for Java
-// store in map and sort then according to lexi
+
 class alphanumeric {
     public String name;
     public int count;
@@ -35,27 +35,24 @@ class alphanumeric {
 };
 class Solution {
     alphanumeric[] sortedStrings(int N, String A[]) {
+        Map<String, Integer>  map =new TreeMap<>();
         
-       
-        Map<String, Integer> map = new TreeMap<>();
-        
-        for(int i=0; i<N; i++)
+        for(int  i=0; i<N; i++)
         {
-            map.put(A[i], map.getOrDefault(A[i],0)+1);
+            map.put(A[i], map.getOrDefault(A[i], 0)+1);
         }
-        
         int n = map.size();
-
         
-          alphanumeric arr[] = new  alphanumeric[n];
-        int k=0;
+        alphanumeric  ans[] = new alphanumeric[n] ; // int arr[] =new int[n];
+        int ind=0;
         
-        for(Map.Entry<String, Integer> entry : map.entrySet())
+        
+        for(Map.Entry<String, Integer> ent : map.entrySet())
         {
-            arr[k++] =  new alphanumeric(entry.getKey(), entry.getValue());
+            ans[ind++] =  new alphanumeric(ent.getKey(), ent.getValue());
         }
         
-        return arr;
+        return ans;
         
     }
 };
