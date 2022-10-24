@@ -56,22 +56,28 @@ class Solution
     static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
     {
         // Your code here
-        ArrayList <Integer> al =new ArrayList<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());// maxheap
+        ArrayList <Integer> al = new ArrayList<>();
+        Deque<Integer> dq = new ArrayDeque<>();
         
-        for(int i=0; i<k; i++)
+        for(int i=0; i<n; i++)
         {
-            pq.add(arr[i]);
-        }
-        al.add(pq.peek());
-        pq.remove(arr[0]);
-        
-        for(int i =k; i<n ;i++)
-        {
-         pq.add(arr[i]);
-         al.add(pq.peek());
-         pq.remove(arr[i-k+1]);
-         
+            if(!dq.isEmpty() && dq.peek()==i-k)
+            {
+                dq.poll(); // removing from front;
+            }
+            //maintining the dec order - > remove smller ele
+            while(!dq.isEmpty() && arr[dq.peekLast()] < arr[i])
+            {
+                dq.pollLast();
+            }
+            
+            dq.offer(i);
+            
+            if(i>=k-1)
+            {
+                al.add(arr[dq.peek()]);
+            }
+
         }
         return al;
     }
