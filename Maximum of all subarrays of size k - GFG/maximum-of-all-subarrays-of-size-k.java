@@ -49,34 +49,37 @@ class Main
 
 
 //User function template for JAVA
-//NAIVE -  slidging window
-// TC: O(nxk)
-// Aux space: O(n-k+1)  
-// 2nd menthod = using max heap.
-// Approach  - from max heap for every window  of k elements, add the root of it ArrayList and return al.
-class Solution{
+
+class Solution
+{
+    //Function to find maximum of each subarray of size k.
     static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
     {
         // Your code here
-      ArrayList<Integer> al = new ArrayList<>();
-      PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());  // will use to create max heap
-      
-      
-      for( int i=0; i<k ;i++)
-      pq.add(arr[i]);
-      
-      al.add(pq.peek());
-      // remove the first element of arr form pq=> as want to compare for next k elements
-      pq.remove(arr[0]);
-      
-      for( int i=k ; i<n;i++)
-      {
-          pq.add(arr[i]);   // add the current element
-          al.add(pq.peek());  ///store the max 
-          pq.remove(arr[i-k+1]);   // remove the 2nd element in 1st iteratiion i.e the first elemet of every window.
-      }
-      
-      return al;
-      
+        ArrayList<Integer> al = new ArrayList<>();
+        
+        Deque<Integer> dq = new ArrayDeque<>();
+        for(int i=0; i<n; i++)
+        {
+            //remove num out of range k
+            if(!dq.isEmpty() && dq.peek()== i-k)
+            {
+                dq.poll();
+            }
+            // maintaining decreagin range -> remove samller numbre in k range 
+            while(!dq.isEmpty() && arr[dq.peekLast()] < arr[i])
+            {
+                dq.pollLast();
+            }
+            dq.offer(i);
+            
+            if(i>=k-1)
+            {
+                al.add(arr[dq.peek()]);
+            }
+            
+            
+        }
+        return al;
     }
 }
