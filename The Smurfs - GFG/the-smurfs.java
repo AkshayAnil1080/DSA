@@ -26,32 +26,27 @@ class GFG{
 class Solution{
     static int minFind(int n, String a[]){
         // code here
-        // find count of each color
         int c1=0, c2=0, c3=0;
-        for(String x : a)
+        
+        for(String curr : a)
         {
-            if(x.equals("R"))
+            if(curr.equals("R")) 
             c1++;
-             if(x.equals("G"))
+            if(curr.equals("G")) 
             c2++;
-            if(x.equals("B"))
+            if(curr.equals("B")) 
             c3++;
-        }
-        // System.out.println(c1+ "" + c2 + " " +c3);
-        
-        // 4 cases//
-        // all of same color - return cpunt of that color
-        if(c1!=0 && c2==0 && c3==0)
-        return c1;
-         if(c1==0 && c2!=0 && c3==0)
-        return c2;
-         if(c1==0 && c2==0 && c3!=0)
-        return c3;
-        
-        // of each color isall even , return 2;
-        if((c1%2==0 && c2%2==0 && c3%2==0) || (c1%2!=0 && c2%2!=0 && c3%2!=0))
-        return 2;
-        
-        else return 1;
+            
+        } 
+            if(c1!=0 && c2==0 && c3==0) return c1;  // RR
+            if(c1==0 && c2!=0 && c3==0) return c2; 
+            if(c1==0 && c2==0 && c3!=0) return c3; 
+            
+            //2 all color are present and every color is in ever num or in odd num
+            if((c1%2==0 && c2%2==0 && c3%2==0) || (c1%2!=0 && c2%2!=0 && c3%2!=0))
+            return 2;
+            
+            else  // mixture // RGB count  -> eeo ,oee, eoe
+            return 1;
     }
 }
