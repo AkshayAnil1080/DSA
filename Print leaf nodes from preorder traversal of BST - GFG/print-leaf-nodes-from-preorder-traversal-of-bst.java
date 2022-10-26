@@ -32,66 +32,64 @@ class GFG
 class Node
 {
     int data; 
-    Node left,right;
-    Node(int key)
+    Node left, right;
+    Node (int key)
     {
-        data=key; left=right=null;
+        data= key; left= right=null;
     }
 }
 //User function Template for Java
 class Solution
 {
-     ArrayList<Integer> al = new ArrayList<>();
+    ArrayList<Integer> al = new ArrayList<>();
+    
     public int[] leafNodes(int arr[], int N)
     {
         // code here
- 
+        //1
         int in[] = new int[N];
-     for(int i =0; i<N; i++)
-     in[i] = arr[i];
-     
-     Arrays.sort(in);
-     
-        Node root =  helper(0,0, N-1 , arr, in);
-         
-         printLeafNodes(root);
-         int ans[]  = new int[al.size()];
-         
-       for(int i =0; i<al.size(); i++)
-       {
-           ans[i] = al.get(i);
-       }
-         return ans;
+        for(int i=0;i<N; i++)
+        in[i] = arr[i];
+        
+        Arrays.sort(in);
+        
+        //2
+        Node root =  helper(0,0,N-1,arr, in);// make a tree from in and pre order
+        
+        //3
+        printLeafNode(root);
+        
+        
+        int ans[] = new int[al.size()];
+        for(int i=0; i<al.size(); i++)
+        {
+            ans[i] = al.get(i);
+        }
+        
+        return ans;
+        
         
         
     }
-    
-       Node helper(int preStart , int inStart, int inEnd , int[] preorder, int[] inorder)
+   Node helper(int preStart, int inStart, int inEnd,  int[] preorder, int[] inorder)
     {
-        //1
-        if(preStart > preorder.length-1 || inStart > inEnd) return null; //array empty
+         if(preStart > preorder.length-1 || inStart > inEnd) return null; 
         
-        //2
         Node root = new Node(preorder[preStart]);
         
-        //4
-        int inIndex = 0;  // searching root obtainde from preorder into inorder
-        for(int i =inStart ; i<=inEnd ; i++ )
+        int inIndex =0;
+        for(int i=inStart; i<=inEnd ;i++)
         {
             if(root.data == inorder[i])
             inIndex = i;
         }
         
-        //5. 
-        root.left = helper(preStart+1 , inStart , inIndex -1 , preorder, inorder);
+        root.left =  helper(preStart+1, inStart, inIndex-1 , preorder, inorder);
+        root.right =  helper(preStart+1 +inIndex -inStart , inIndex+1, inEnd, preorder, inorder);
         
-        root.right =helper(preStart+1 + inIndex - inStart , inIndex+1 , inEnd , preorder, inorder);
-        
-        //3
         return root;
-    
     }
-     void printLeafNodes(Node root)
+     void printLeafNode(Node root)
         {
               
             // If node is null, return
@@ -106,16 +104,12 @@ class Solution
                 return;
             }
               
-            // If left child exists, check for leaf
-            // recursively
+           
             if (root.left != null)
-                printLeafNodes(root.left);
+                printLeafNode(root.left);
                   
-            // If right child exists, check for leaf
-            // recursively
+           
             if (root.right != null)
-                printLeafNodes(root.right);
+                printLeafNode(root.right);
         }
-          
-
 }
