@@ -29,87 +29,48 @@ class GFG
 
 // } Driver Code Ends
 
-class Node
-{
-    int data; 
-    Node left, right;
-    Node (int key)
-    {
-        data= key; left= right=null;
-    }
-}
+
 //User function Template for Java
 class Solution
 {
-    ArrayList<Integer> al = new ArrayList<>();
-    
     public int[] leafNodes(int arr[], int N)
     {
         // code here
-        //1
-        int in[] = new int[N];
-        for(int i=0;i<N; i++)
-        in[i] = arr[i];
-        
-        Arrays.sort(in);
-        
-        //2
-        Node root =  helper(0,0,N-1,arr, in);// make a tree from in and pre order
-        
-        //3
-        printLeafNode(root);
-        
+        ArrayList<Integer> al= new ArrayList<>();
+        Stack<Integer> st = new Stack<>();
+       
+        for(int i =0,j=1; j<N ;i++,j++)
+        {
+             boolean flag = false;
+             
+            if(arr[i]>arr[j])
+            st.push(arr[i]);
+            
+            else
+            {
+                while(!st.isEmpty())
+                {
+                    if(arr[j] > st.peek())
+                    {
+                        st.pop();
+                        flag = true;
+                    }
+                    else break;
+                }
+            }
+            
+            if(flag)
+            {
+                al.add(arr[i]);
+            }
+        }
+        al.add(arr[N-1]);
         
         int ans[] = new int[al.size()];
-        for(int i=0; i<al.size(); i++)
+        for(int i =0; i<al.size(); i++)
         {
             ans[i] = al.get(i);
         }
-        
         return ans;
-        
-        
-        
     }
-   Node helper(int preStart, int inStart, int inEnd,  int[] preorder, int[] inorder)
-    {
-         if(preStart > preorder.length-1 || inStart > inEnd) return null; 
-        
-        Node root = new Node(preorder[preStart]);
-        
-        int inIndex =0;
-        for(int i=inStart; i<=inEnd ;i++)
-        {
-            if(root.data == inorder[i])
-            inIndex = i;
-        }
-        
-        root.left =  helper(preStart+1, inStart, inIndex-1 , preorder, inorder);
-        root.right =  helper(preStart+1 +inIndex -inStart , inIndex+1, inEnd, preorder, inorder);
-        
-        return root;
-    }
-     void printLeafNode(Node root)
-        {
-              
-            // If node is null, return
-            if (root == null)
-                return;
-              
-            // If node is leaf node, print its data    
-            if (root.left == null &&
-                root.right == null)
-            {
-                al.add(root.data);
-                return;
-            }
-              
-           
-            if (root.left != null)
-                printLeafNode(root.left);
-                  
-           
-            if (root.right != null)
-                printLeafNode(root.right);
-        }
 }
