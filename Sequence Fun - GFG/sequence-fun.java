@@ -27,12 +27,14 @@ class Solution
     {
         // code here
         long mod = 1000000007;
-        long arr[] = new long[n+1];
+        
+        long arr[]  = new long[n+1];
         arr[1]=2;
-        for(int i=2; i<=n; i++)
+        for(int i =2 ;i<=n ;i++)
         {
-            arr[i] =  (arr[i-1]*i +1) %mod;
+            arr[i] = (arr[i-1] * i +1)%mod;
         }
+        
         return (int)(arr[n]%mod);
     }
 }
