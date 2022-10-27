@@ -27,14 +27,13 @@ class Solution
     {
         // code here
         long mod = 1000000007;
+        long ans=2;
         
-        long arr[]  = new long[n+1];
-        arr[1]=2;
-        for(int i =2 ;i<=n ;i++)
+        for(int i =2 ;i<=n ;i++)  //O(n)
         {
-            arr[i] = (arr[i-1] * i +1)%mod;
+            ans = (ans * i +1)%mod;
         }
         
-        return (int)(arr[n]%mod);
+        return (int)(ans%mod);
     }
 }
