@@ -28,7 +28,6 @@ class GFG{
 
 
 //User function Template for Java
-
 class Solution{
     static ArrayList<ArrayList<String>> displayContacts(int n, 
                                         String contact[], String s)
