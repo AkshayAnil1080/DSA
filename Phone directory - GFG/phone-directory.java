@@ -38,7 +38,7 @@ class Solution{
    
         for(int i=1; i<=s.length(); i++)
         {
-            Set<String> set  = new TreeSet<>();
+            Set<String> set  = new HashSet<>();
             String curr = s.substring(0,i);
             for(int j =0; j<contact.length; j++)
             {
@@ -60,6 +60,8 @@ class Solution{
                ArrayList<String> sub_ans = new ArrayList<>();
                for(String x : set)
                sub_ans.add(x);
+               
+               Collections.sort(sub_ans);
             
             ans.add(sub_ans);
         }
