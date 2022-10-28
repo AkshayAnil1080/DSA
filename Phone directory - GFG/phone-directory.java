@@ -45,7 +45,7 @@ class Solution{
             find(s.substring(0,i) , root, sub_ans); // will append all poss distinct ans
             
             //sort it
-            Collections.sort(sub_ans); // nlogn
+            
             ans.add(sub_ans);
         }
         return ans;
@@ -99,12 +99,12 @@ class Solution{
 
 class trie
 {
-    HashSet<String> set;
+    TreeSet<String> set;
     trie ch[];
     
     trie()
     {
-        set = new HashSet<>();
+        set = new TreeSet<>();
         ch = new trie[26];
         for(int i=0; i<26;i++)
         ch[i] = null;
