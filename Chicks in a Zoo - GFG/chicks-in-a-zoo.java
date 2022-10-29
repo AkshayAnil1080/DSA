@@ -30,27 +30,21 @@ class Solution
     public long NoOfChicks(int N)
     {
         // Code here
-        long count =1;
-        long arr[]  = new long[42];
+        
+        long count =1; // number of chciks poss at day n
+        long arr[] = new long[42];
         arr[6] =1;
-        
-        for(int i=1; i<N ;i++)
+        for(int i=1; i<N; i++)
         {
-            //1.
-        //update the ct with expired one - then will do *2;
-        count -= arr[i];
-        
-           // update for i day to 6th day
-        arr[i+6] = 2*count;
-        
-        
-        //each live chicks produce two chicks.
-         count += 2*count;
-         
-
-     
-       
             
+            
+            //1. 
+            count -= arr[i]; // ith day - how many chick we have that will become x2
+            
+            //2.
+            arr[i+6] = 2*count;  // update for i day to i+6th day; 
+            
+            count += 2*count;
         }
         return count;
     }
