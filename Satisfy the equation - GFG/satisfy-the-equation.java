@@ -29,97 +29,87 @@ class GFG {
 
 
 //User function Template for Java
-class Pair{
+class Pair
+{
     int a,b;
     Pair(int a, int b)
     {
-        this.a = a; this.b=b;
+        this.a=a; this.b=b;
     }
 }
 class Solution {
     static int[] satisfyEqn(int[] A, int N) {
         // code here
-        // put all poss sum in hash
-        Map<Integer, Pair> map = new HashMap<>();
-        
-        ArrayList<Integer> ans  = new ArrayList<>();
-        
+        Map<Integer, Pair> map  =new HashMap<>();
+        ArrayList<Integer> ans = new ArrayList<>();
         for(int i=0; i<N-1; i++)
         {
-            for(int j=i+1 ; j<N; j++)
+            for(int j=i+1; j<N; j++)
             {
-                int sum =  A[i]+A[j];
+                int sum=A[i] +A[j];
                 
-                //if(already contains
                 if(!map.containsKey(sum))
                 {
-                    map.put(A[i] +A[j] , new Pair(i,j));
+                    map.put(sum, new Pair(i,j));
                     continue;
                 }
-
-                
-                //if not need to check within the and ans and with prev min answer
-                //need  to arr- final and prev
+                // when sum is already there
                 Pair comb = map.get(sum);
-                
-                if(comb.a != i && comb.a!=j && comb.b!=i && comb.b!=j)
+                if(comb.a !=i && comb.a!=j && comb.b!=i && comb.b!=j )
                 {
-                    //storting the curr  comb pts
-                    int curr[]  = new int[4];
+                    int curr[] =new int[4];
                     curr[0] = comb.a;
                     curr[1] = comb.b;
-                    curr[2] = i;
-                    curr[3] = j;
+                    curr[2]= i;
+                    curr[3]= j;
                     
-                    if(ans.size()==0) // run only for first comb occurence
+                    if(ans.size()==0)
                     {
-                        for(int k =0; k<4; k++)
+                        for( int k =0; k<4; k++)
                         {
                             ans.add(curr[k]);
                         }
                     }
-                
-                
-                //else need to compare within and from prev ans;
+                    
+                    // else we have to compare the curr comb with so far
+                    // prev samllest comb(ans)
                     else
                     {
                         boolean toReplace = false;
                         for(int m=0; m<4; m++)
                         {
-                            if(ans.get(m) < curr[m]) // eg 0 1 2 3 with 1 2 5 3
-                            break;
+                            if(ans.get(m) < curr[m]) break;
                             
-                            if(ans.get(m) > curr[m]) // 0 1 3 4 with 0 1 2 4
+                            if(ans.get(m) > curr[m])
                             {
-                                toReplace =true; // copy final to ans array
-                                 break;
+                                toReplace = true;
+                                break;
                             }
                         }
                         
-                        if(toReplace == true)
+                        if(toReplace)
                         {
-                            for(int m =0; m<4; m++)
+                            for(int m= 0; m<4; m++)
                             {
-                                ans.set(m,curr[m]);
+                                ans.set(m,curr[m]); // updating the ans array
                             }
                         }
                     }
+                    
                 }
-                
             }
         }
-        // after everything if still fiinal.size()==0 -> no comb occiured
-        if(ans.size()==0)
-        {
+       
             int res[] = new int[4]; Arrays.fill(res,-1);
+            
+             if(ans.size()==0){
             return res;
-        }
-        int res[] = new int[4];
-        for(int i =0; i<4; i++)
+             }
+        
+        for(int m=0; m<4; m++)
         {
-            res[i] = ans.get(i);
+            res[m] = ans.get(m);
         }
         return res;
-        
-    }
+     }
 };
