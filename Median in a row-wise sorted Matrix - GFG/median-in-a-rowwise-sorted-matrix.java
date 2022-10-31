@@ -35,25 +35,48 @@ class GFG
 
 
 //User function Template for Java
-
 class Solution {
     int median(int matrix[][], int R, int C) {
-        // code here
-         int arr[] = new int[R*C];
-        int k=0;
-        for(int i=0; i<R; i++)
+        // code here        
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        // karna padega else error in eg column mat 18 6 2
+        for (int i = 0; i < R; i++)
         {
-            for(int j=0; j<C; j++)
-            {
-              arr[k++] = matrix[i][j];
-            }
+            if (matrix[i][0] < min) // minalways presetn in 1st col
+                min = matrix[i][0];
+     
+            if (matrix[i][C-1] > max) // max alwayss in last col
+                max = matrix[i][C-1];
         }
-        Arrays.sort(arr);
-        int n= arr.length;
-        if(n%2!=0)
-        return arr[n/2];
-    
-    else 
-    return arr[(n-1)/2] + arr[n/2];
+        
+     
+        int count = (R * C + 1) / 2;  // count of ele <= median
+        while (min < max)
+        {
+            int mid = min + (max - min) / 2;
+            int curr_count = 0;
+            for (int i = 0; i < R; ++i)
+            {
+                int l=0,r=C-1;
+                while(l<r){
+                    int m=(l+r)/2;
+                    if(matrix[i][m]<=mid){
+                        l=m+1;
+                    }else{
+                        r=m;
+                    }
+                }
+                if(matrix[i][l]<=mid){
+                    curr_count++;
+                }
+                curr_count+=l;  // its not +=1 
+            }
+            if (curr_count < count)
+                min = mid + 1;
+            else
+                max = mid;
+        }
+        return min;
     }
 }
