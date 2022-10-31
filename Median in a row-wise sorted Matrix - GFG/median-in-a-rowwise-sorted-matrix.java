@@ -38,18 +38,53 @@ class GFG
 
 class Solution {
     int median(int matrix[][], int R, int C) {
-        // code here     
-    int arr[] = new int[R*C];
-    int k=0;
-    for(int i=0; i<R; i++)
-    {
-        for(int j=0; j<C; j++)
+        // code here      
+        int min = Integer.MAX_VALUE;
+        int max=  Integer.MIN_VALUE;
+        
+        for(int i=0 ;i<R; i++)
         {
-            arr[k++] = matrix[i][j];
+            if(matrix[i][0] < min)
+            min = matrix[i][0];
+            
+            if(matrix[i][C-1] > max)
+            max  = matrix[i][C-1];
         }
-    }
-    
-    Arrays.sort(arr);
-    return arr[arr.length/2];
+        
+        int count = (R*C+1)/2;
+        
+        while(min<max)
+        {
+            int mid = (min+max)/2;
+            int curr_count = 0;
+            for(int i =0 ; i<R; i++)
+            {
+                int l=0; int r =C-1;
+                while(l<r)
+                {
+                    int m = (l+r)/2;
+                    if(matrix[i][m] <= mid)
+                    l=m+1;
+                    
+                    else
+                    r=m;
+                }
+                if(matrix[i][l] <=mid) // searching 5 in row (1,3,y) : y<=mid
+                {
+                    curr_count++;
+                }
+                curr_count+=l ;
+            }
+            if(curr_count < count)
+            {
+                min =  mid+1;
+            }
+            
+            else
+            max=mid;
+            
+            
+        }
+        return min;
     }
 }
