@@ -98,37 +98,34 @@ class GFG {
 class Solution {
     public static int largestArea(int n,int m,int k,int[][] enemy) {
         // code here
-        
         if(k==0)
         return n*m;
         
-        ArrayList<Integer> r = new ArrayList<Integer>();
-         ArrayList<Integer> c = new ArrayList<Integer>();
-         
-         r.add(0); c.add(0);
-         
-         for(int i =0; i<k; i++)
-         {
-             r.add(enemy[i][0]);  c.add(enemy[i][1]);
-         }
-         
-         r.add(n+1);
-         c.add(m+1);
-         
-         Collections.sort(r); Collections.sort(c);
-         
+        ArrayList<Integer> r = new ArrayList<>(); // row per
+        ArrayList<Integer> c =new ArrayList<>(); // col per
+        
+        r.add(0);
+        c.add(0);
+        
+        for(int i=0; i<k; i++)
+        {
+            r.add(enemy[i][0]);
+            c.add(enemy[i][1]);
+        }
+        
+        r.add(n+1); c.add(m+1) ;
+        
+       
+        Collections.sort(r);        Collections.sort(c);
+        
+         //step2
          int max_r=0;
-         for(int i=1; i<r.size(); i++ )
-         {
-             max_r = Math.max(max_r, r.get(i) - r.get(i-1) -1); // 1 becaise dont have to consider the enemy row
-             
-         }
-         int max_c=0;
-         for(int i=1; i<c.size(); i++ )
-         {
-             max_c = Math.max(max_c, c.get(i) - c.get(i-1) -1); // 1 becaise dont have to consider the enemy column
-             
-         }
+         for(int i=1; i<r.size(); i++)
+         max_r = Math.max(max_r, r.get(i)- r.get(i-1)-1); // -1 as not considering the enemy row.
+         
+          int max_c=0;
+          for(int i=1; i<c.size(); i++)
+         max_c = Math.max(max_c, c.get(i)- c.get(i-1)-1); // 
          
          return max_r*max_c;
         
