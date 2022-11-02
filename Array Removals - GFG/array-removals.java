@@ -32,29 +32,32 @@ public class Main {
 //User function Template for Java
 
 class Solution {
-    int dp[][] = new int[100][100];
-     
+    int dp [][] = new int[100][100];
     int removals(int[] arr, int n, int k) {
         // code here
+        
         Arrays.sort(arr);
         
-      for(int[] r:dp)
-        Arrays.fill(r,-1);
+        for(int [] r: dp)
+        {
+            Arrays.fill(r,-1);
+        }
         
-        return solve(arr,0,n-1,k);
-        
+        return solve(arr, 0, n-1,k);
     }
-    int solve(int arr[] , int i , int j , int k)
+    int solve(int arr[] , int i, int j, int k)
     {
         if(i>=j) return 0;
         
-        if(arr[j] - arr[i]<=k) return 0;
+        if(arr[j] - arr[i] <=k) return 0;
         
         if(dp[i][j]!=-1)
-        return dp[i][j];
+        {
+            return dp[i][j];
+        }
         
-         dp[i][j] = 1+ Math.min(solve(arr,i+1,j,k), solve(arr,i,j-1,k));
-         
-         return dp[i][j];
+        dp[i][j] = 1+ Math.min(solve(arr, i+1, j,k), solve(arr,i,j-1,k));
+        
+        return dp[i][j];
     }
 }
