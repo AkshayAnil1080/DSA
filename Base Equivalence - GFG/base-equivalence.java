@@ -30,21 +30,21 @@ class Solution
     String baseEquiv(int n, int m)
     {
         // code here
-        
-        for(int i=2; i<=32; i++)
+        for(int i =2; i<=32; i++)
         {
             if(solve(n,i,m))
             return "Yes";
+            
         }
         return "No";
     }
+    
     boolean solve(int num, int base, int dig)
     {
-        if(dig==1 && base>num)
-        return true;
+        if(base>num &&  dig==1) return true;
         
         if(num>=base && dig>1)
-        return solve(num/base, base, --dig);
+        return solve(num/base , base, --dig);
         
         return false;
     }
