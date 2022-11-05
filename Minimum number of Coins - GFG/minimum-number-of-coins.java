@@ -44,7 +44,7 @@ class Solution{
 	        for(int j = 1; j <=N; j++){ // val for loop
 	            if(j >= coins[i]){ // val bada hoga coins[i] se tb to subtract krnge
 	                dp[j] = Integer.min(dp[j], 1+dp[j-coins[i]]);
-	                dp2[j] = i; // to make val j , which other coins we used.
+	                dp2[j] = coins[i]; // to make val j , which other coins we used.
 	            }
             }
         }
@@ -57,12 +57,12 @@ class Solution{
         //     N = N - coins[dp2[i]];
         //     i = N;
         // }
-        int x = N; // number to be processed
+      
         while(N>0)
         {
         if(dp2[N] != -1)
-                num.add(coins[dp2[N]]);   
-            N = N - coins[dp2[N]];
+                num.add(dp2[N]);   
+            N = N - dp2[N];
         }
         return num;
     }
