@@ -58,12 +58,11 @@ class Solution{
         //     i = N;
         // }
         int x = N; // number to be processed
-        while(x>0 && N>=0)
+        while(N>0)
         {
-        if(dp2[x] != -1)
-                num.add(coins[dp2[x]]);   
-            N = N - coins[dp2[x]];
-            x = N;
+        if(dp2[N] != -1)
+                num.add(coins[dp2[N]]);   
+            N = N - coins[dp2[N]];
         }
         return num;
     }
