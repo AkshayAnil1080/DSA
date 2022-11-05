@@ -31,18 +31,41 @@ class Solution{
     static List<Integer> minPartition(int N)
     {
         // code here
-        List<Integer> ans = new ArrayList<>();
+        int coins[] = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
+        int dp[] = new int[N+1];
+        int dp2[] = new int[N+1];
         
-        int curr[] = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000};
         
-        for(int i =curr.length-1; i>=0; i--)
+        dp[0]=0;
+        dp2[0]=0;
+        
+        for(int i=1; i<=N; i++)
         {
-            while(N>=curr[i])
+            dp[i]= Integer.MAX_VALUE;
+            dp2[i] = -1;
+        }
+        for(int i=0; i<10; i++) // coins range
+        {
+            for(int j =1; j<=N ;j++) // val range
             {
-                N-=curr[i];
-                ans.add(curr[i]);
+             if(j >= coins[i]) // updation 
+             {
+                 dp[j] = Math.min(dp[j], dp[j-coins[i]] +1);
+                 dp2[j] = coins[i];  // step2
+             }
             }
         }
+        List<Integer> ans = new ArrayList<>(); // s3
+        while(N>0)
+        {
+            if(dp2[N]!= -1)
+            ans.add(dp2[N]);
+            
+            N -= dp2[N];
+            
+        }
         return ans;
+        
+        
     }
 }
