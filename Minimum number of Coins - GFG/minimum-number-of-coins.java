@@ -26,46 +26,37 @@ class GFG{
 
 
 // User function Template for Java
-
 class Solution{
     static List<Integer> minPartition(int N)
     {
-        // code here
-        int coins[] = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
-        int dp[] = new int[N+1];
-        int dp2[] = new int[N+1];
+        int[] coins = new int[]{1, 2, 5, 10, 20, 50, 100, 200, 500, 2000};
+        int[] dp = new int[N+1];  // storing min number of couns needed for to make value i
+        int[] dp2 = new int[N+1]; // to make val i, which coinwas  used.
+        dp[0] = 0;
+        dp2[0] = 0;
         
-        
-        dp[0]=0;
-        dp2[0]=0;
-        
-        for(int i=1; i<=N; i++)
-        {
-            dp[i]= Integer.MAX_VALUE;
-            dp2[i] = -1;
-        }
-        for(int i=0; i<10; i++) // coins range
-        {
-            for(int j =1; j<=N ;j++) // val range
-            {
-             if(j >= coins[i]) // updation 
-             {
-                 dp[j] = Math.min(dp[j], dp[j-coins[i]] +1);
-                 dp2[j] = coins[i];  // step2
-             }
+        for(int i = 1; i <= N; i++){
+	        dp[i] = Integer.MAX_VALUE;
+	       // dp2[i] = -1;
+	    }
+	    for(int i = 0; i < 10; i++){
+	        for(int j = 1; j <=N; j++){ // val for loop
+	            if(j >= coins[i]){ // val bada hoga coins[i] se tb to subtract krnge
+	                dp[j] = Integer.min(dp[j], 1+dp[j-coins[i]]);
+	                dp2[j] = coins[i]; // to make val j , which other coins we used.
+	            }
             }
         }
-        List<Integer> ans = new ArrayList<>(); // s3
+        // itr in value N to for dp2 to see which coins were used and 
+        // int k = N;
+        List<Integer> num = new ArrayList<Integer>();
+      
         while(N>0)
         {
-            if(dp2[N]!= -1)
-            ans.add(dp2[N]);
-            
-            N -= dp2[N];
-            
+        if(dp2[N] != 0)
+                num.add(dp2[N]);   
+            N = N - dp2[N];
         }
-        return ans;
-        
-        
+        return num;
     }
 }
