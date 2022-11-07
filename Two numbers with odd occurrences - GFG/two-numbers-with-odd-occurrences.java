@@ -34,42 +34,36 @@ class GFG{
 //User function Template for Java
 class Solution
 {
-    public int[] twoOddNum(int a[], int N)
+    public int[] twoOddNum(int arr[], int n)
     {
         // code here
-         int all = 0 ;
-        for ( int i = 0; i< a.length ; i++)
+        int all=0;
+        for(int i =0; i<n; i++)
+        all = all^arr[i];
+        
+        
+        //s2  rightmost set bit 
+        int m = all & -all;
+        
+        // s3
+        int g1=0; int g2=0;
+        for(int i =0; i<arr.length; i++)
         {
-            all = all^a[i];
-        }
-        
-        int m = all & -all ; 
-        
-        int all1 = 0;
-        int all2 = 0;
-        
-        for ( int i = 0; i< a.length ; i++)
-        {
-            if((m & a[i]) == 0 )
+            if((m&arr[i])==0)
             {
-                all1 = all1 ^ a[i];
+                g1 ^= arr[i];
             }
-            
-            else  // 
-            all2 = all2 ^ a[i];
+            else
+            g2 ^= arr[i];
         }
-        
-       int result[] = new int[2];
-       if(all1<all2)
-      { result[0] = all2;
-        result[1] = all1;
-      }
-      else
-      { result[0] = all1;
-        result[1] = all2;
-      }
-       
-        
-        return result;
+        int ans[] = new int[2];
+        if(g1>g2)
+        {
+            ans[0]=g1; ans[1] = g2;
+        }
+        else
+         {ans[0]=g2; ans[1] = g1;}
+         
+         return ans;
     }
 }
