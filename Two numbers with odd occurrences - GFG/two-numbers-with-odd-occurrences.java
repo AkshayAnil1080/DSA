@@ -34,23 +34,42 @@ class GFG{
 //User function Template for Java
 class Solution
 {
-    public int[] twoOddNum(int arr[], int N)
+    public int[] twoOddNum(int a[], int N)
     {
         // code here
-        int ans[] = new int[2];
-        Map<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
-        for(int i=0; i<N ;i++)
+         int all = 0 ;
+        for ( int i = 0; i< a.length ; i++)
         {
-            map.put(arr[i], map.getOrDefault(arr[i],0)+1);
+            all = all^a[i];
         }
-        int k=0;
-        for(int x :map.keySet())
+        
+        int m = all & -all ; 
+        
+        int all1 = 0;
+        int all2 = 0;
+        
+        for ( int i = 0; i< a.length ; i++)
         {
-            if(map.get(x)%2!=0)
-            ans[k++]= x;
+            if((m & a[i]) == 0 )
+            {
+                all1 = all1 ^ a[i];
+            }
             
+            else  // 
+            all2 = all2 ^ a[i];
         }
-        return ans;
-
+        
+       int result[] = new int[2];
+       if(all1<all2)
+      { result[0] = all2;
+        result[1] = all1;
+      }
+      else
+      { result[0] = all1;
+        result[1] = all2;
+      }
+       
+        
+        return result;
     }
 }
