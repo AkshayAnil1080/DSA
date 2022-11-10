@@ -23,33 +23,24 @@ class GFG {
 class Solution {
     static String isSumOfTwo(int n){
         // code here
-        //seive
-        boolean prime[] = new boolean[n+1];
-        for(int i =2; i<=n; i++)
+        
+        if(n<=3) return "No";
+        
+        if(n%2!=0)  // eg 17
         {
-            prime[i] = true;
-        }
-        for(int p=2; p*p<=n ;p++)
-        {
-            if(prime[p]== true)
+            for(int i=2; i*i<=(n-2); i++)
             {
-                //mark its multiple false;
-                for(int i =p*p ;i<=n; i=i+p)
-                {
-                    prime[i] = false;
-                }
-                
+                if((n-2)%i==0) //is not prime
+                return "No";
             }
+            return "Yes";
+        
         }
         
-        for(int i =2; i<=n/2 ;i++)
-        {
-            if(prime[i] && prime[n-i]) //O(1)
-            {
-                return "Yes";
-            }
-        }
-        return "No";
+        if(n%2==0) return "Yes";
+        
+        return "kuch v";
     }
+    
    
 }
