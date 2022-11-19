@@ -20,7 +20,7 @@ class GFG {
 
 
 // User function Template for Java
-
+TC : O(1 ,)
 class Solution {
     long lcmTriplets(long N) {
         // code here
@@ -32,28 +32,24 @@ class Solution {
         return 6;
         
         long ans =0;
-        if(N%2!=0)
+        if(N%2!=0) //odd
         ans= N*(N-1)*(N-2);
         
         if(N%2==0)
         {
-            if(gcd((int)N,(int)N-3)==1)
+            // if muliple of 3
+            if(N%3==0)
+            ans = (N-1)*(N-2)*(N-3);
+            
+            
+            else
             {
                 ans = N*(N-1)*(N-3);
             }
-            else
-             ans = (N-1)*(N-2)*(N-3);
+             
         }
         return ans;
         
     }
-    static int gcd(int a, int b) // opt euclidean algo.
-    {
-        if(b==0)
-        return a;
-        
-        
-        else
-        return gcd(b, a%b);
-    }
+   
 }
