@@ -40,13 +40,18 @@ class Solution
     public static int findSum(int A[],int N) 
     {
         //code here
-        int max =A[0];
+        int max = A[0];
         int min = A[0];
-        for(int i=1; i<N;i++)
+        
+        for(int i =1; i<N; i++)
         {
-            max = max<A[i] ? A[i]:  max;
-            min =  min>A[i] ? A[i] : min;
+            max = max < A[i] ? A[i] : max;
+            min = min > A[i] ? A[i] : min;
+            
         }
-        return max+min;
+        return max +min;
     }
 }
+
+Tc": O(n)
+SC
