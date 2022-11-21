@@ -10,10 +10,37 @@ import java.util.*;
 
 class Solution
 {
-    public static void sort012(int a[], int n)
+    public static void sort012(int arr[], int n)
     {
         // code here 
-        Arrays.sort(a);
+      
+     int low =0; int high=n-1; int mid=0;
+     while(mid<=high)
+     
+    {
+        //1
+        if(arr[mid]==0)
+        {
+            int temp = arr[low];
+            arr[low] = arr[mid];
+            arr[mid] = temp;
+            mid++; low++;
+        }
+        
+        //2
+        else if(arr[mid]==1)
+        mid++;
+        
+        //3
+        else // if arr[mid] ==2
+        {
+            int temp = arr[high];
+            arr[high] = arr[mid];
+            arr[mid] = temp;
+            high--;
+        }
+    }
+    
        
     }
 }
