@@ -26,18 +26,15 @@ class Solution {
    
     static long nthFibonacci(long n){
         // code here
-        
-        long fib[] = new long[(int)n+1];
-        
-        //s2
-        fib[0]=0; fib[1]=1;
-        
-        for(int i =2; i<=n; i++)
-        {
-            fib[i] = (fib[i-1]%mod + fib[i-2]%mod)%mod;
-        }
-        return fib[(int)n];
+      long a =0;long b=1; long c =0;
+      for(int i =2; i<=n; i++)
+      {
+          c=(a%mod+b%mod)%mod;
+          a=b%mod;
+          b=c%mod;
+      }
+      return c%mod;
     }    
 }
 // TC: O(n)
-// SC:O(n)
+// SC:O(1)
