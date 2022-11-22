@@ -22,16 +22,28 @@ class GFG {
 
 //User function Template for Java
 class Solution {
+    static long mod = 1000000007;
+    static long memo[];
     static long nthFibonacci(long n){
         // code here
-        long a =0; long b=1;
-        long c=0;
-        long mod = 1000000007;
-        for(int i=2; i<=n; i++){
-            c=(a%mod+b%mod)%mod;
-            a=b%mod;
-            b=c%mod;
+        memo  = new long[(int)n+1];
+        Arrays.fill(memo,-1);
+        return fib(n);
+    }
+    static long fib(long n)
+    {
+        long res =0;
+        if(memo[(int)n]==-1)
+        {
+            if(n==0 || n==1)
+            res = n;
+            
+            else
+             res = (fib(n-1)%mod + fib(n-2)%mod)%mod ;
+             
+             memo[(int)n] = res;
         }
-        return c%mod;
+        return memo[(int)n];
+        
     }
 }
