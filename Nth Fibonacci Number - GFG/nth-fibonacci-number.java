@@ -23,27 +23,21 @@ class GFG {
 //User function Template for Java
 class Solution {
     static long mod = 1000000007;
-    static long memo[];
+   
     static long nthFibonacci(long n){
         // code here
-        memo  = new long[(int)n+1];
-        Arrays.fill(memo,-1);
-        return fib(n);
-    }
-    static long fib(long n)
-    {
-        long res =0;
-        if(memo[(int)n]==-1)
-        {
-            if(n==0 || n==1)
-            res = n;
-            
-            else
-             res = (fib(n-1)%mod + fib(n-2)%mod)%mod ;
-             
-             memo[(int)n] = res;
-        }
-        return memo[(int)n];
         
-    }
+        long fib[] = new long[(int)n+1];
+        
+        //s2
+        fib[0]=0; fib[1]=1;
+        
+        for(int i =2; i<=n; i++)
+        {
+            fib[i] = (fib[i-1]%mod + fib[i-2]%mod)%mod;
+        }
+        return fib[(int)n];
+    }    
 }
+// TC: O(n)
+// SC:O(n)
