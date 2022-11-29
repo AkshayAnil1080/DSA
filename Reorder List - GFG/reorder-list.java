@@ -83,41 +83,62 @@ class Node {
         next = null;
     }
 }*/
-
+// Tc: o(n
+// Sc: O(1)
 class Solution {
     Node reorderlist(Node head) {
         // Your code here
-        if(head.next==null)
-        return head;
-        // s1
-        ArrayList<Integer> al = new ArrayList<>();
-        while(head!=null)
+        //s1
+        Node slow = head; Node fast = slow.next;
+        while(fast!=null && fast.next!=null) // n/2
         {
-            al.add(head.data);
-            head = head.next;
+            slow=slow.next;
+            fast=fast.next.next;
         }
-        int n = al.size();
+        
+        Node l1 = head; // 1>2>3
+        Node l2 = slow.next; //4>5
+        slow.next=null;
         
         //s2
-        Node  ans = new Node(0);
-        Node curr = ans;
+        l2 = reverse(l2);
         
-        for(int i =0; i<=n/2; i++)
+        // s3 merger
+        Node ans = new Node(0);
+        Node curr=ans;
+        
+        while(l1!=null || l2!=null) //n/2
         {
-            if(i==n/2 && n%2==0)
-            continue;
-            
-           else if(i==n/2 && n%2!=0)
+            if(l1!=null)
             {
-               curr.next = new Node(al.get(i));  
+                curr.next =l1;
+                curr=curr.next;
+                l1 = l1.next;
             }
-            else
+            
+             if(l2!=null)
             {
-                curr.next = new Node(al.get(i));  
-                curr.next.next = new Node(al.get(n-i-1));
-                curr = curr.next.next;
+                curr.next =l2;
+                curr=curr.next;
+                l2 = l2.next;
             }
         }
         return ans.next;
+    }
+    
+    //s2 rev
+    Node reverse(Node head )
+    {
+        Node prev= null; Node curr = head,next;
+        while(curr!=null)
+        {
+            next = curr.next;
+            
+            // 3 steps
+            curr.next = prev;
+            prev = curr;
+            curr=  next;
+        }
+        return prev;
     }
 }
