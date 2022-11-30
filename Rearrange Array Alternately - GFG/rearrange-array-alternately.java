@@ -48,7 +48,8 @@ class Main {
 
 // } Driver Code Ends
 
-
+// Tc: O(n)
+// SC:O(1)
 class Solution{
     
     // temp: input array
@@ -57,29 +58,31 @@ class Solution{
     public static void rearrange(long arr[], int n){
         
         // Your code here
-        long a[] = new long[n];
+        long max =arr[0];
         for(int i =0; i<n; i++)
-        a[i] = arr[i];
-        
-        int k=0;
-        for(int i =0; i<=n/2; i++)
         {
-            //3 cases
-            if(n%2==0 && i==n/2)
-            continue;
-            
-            
-            if(n%2!=0 &&  i==n/2)
-            arr[k] = a[i];
-            
-            else
-            {
-                arr[k++] = a[n-i-1];
-                arr[k++] = a[i];
-            }
+            max = Math.max(max, arr[i]);
         }
         
-        
+        long m  = max+1;
+        int f=0; int b = n-1;
+        //s2
+        for(int i=0; i<n; i+=2)
+        {
+            long v1 = arr[b--]%m;
+            arr[i] +=  (m*v1);
+            
+            if(i+1<n)
+            {
+                long v2 = arr[f++]%m;
+                arr[i+1] += (m*v2);
+            }
+        }
+        //s3
+        for(int i=0; i<n; i++)
+        {
+            arr[i] /=m;
+        }
     }
     
 }
