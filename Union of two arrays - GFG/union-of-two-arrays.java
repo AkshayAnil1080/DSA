@@ -49,26 +49,24 @@ class GFG {
 
 
 //User function Template for Java
-Tc: (n)
+// Tc: (n+m log(n+m))
+// SC: O(n+m)
 class Solution{
     public static int doUnion(int a[], int n, int b[], int m) 
     {
         //Your code herep
-        int ans[] = new int[m+n];
-        for(int i =0; i<n ;i++)
-        ans[i] = a[i];
+       HashSet<Integer>  set = new HashSet<>();
+       for(int i =0; i<n; i++)
+       set.add(a[i]);
+       
+       for(int i=0; i<m; i++)
+       set.add(b[i]);
+       
+       return set.size();
         
-        int k=n;
-        for(int i =0; i<m; i++)
-        ans[k++]= b[i];
-        
-        Arrays.sort(ans);
-        int c=1;
-        for(int i =1; i<m+n; i++)
-        if(ans[i]!=ans[i-1])
-        c++;
-        
-        return c;
+       
+       
+      
         
     }
 }
