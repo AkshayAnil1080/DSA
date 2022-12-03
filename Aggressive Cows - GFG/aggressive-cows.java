@@ -30,7 +30,8 @@ class GFG {
 
 // } Driver Code Ends
 
-
+// 30*n = O(n)
+// Sc:O(1)
 // User function Template for Java
 class Solution {
     public static int solve(int n, int k, int[] stalls) {
@@ -38,7 +39,7 @@ class Solution {
         Arrays.sort(stalls);
         //s2
         int l =1; int h=stalls[n-1]-stalls[0];
-        while(l<=h)  // 
+        while(l<=h)  // log base 2 (10^9) = 30
         {
             int possans = (l+h)/2;
             if(isPoss(stalls, k, possans))
@@ -50,7 +51,7 @@ class Solution {
         }
         return h;
     }
-    static boolean isPoss(int stalls[] , int k, int dist)
+    static boolean isPoss(int stalls[] , int k, int dist) //o(N)
     {
         int cowsPlaced =1;
         int prevcow = stalls[0];
