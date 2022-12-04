@@ -49,7 +49,7 @@ class Solution {
         int dx[] = {0,0,1,-1};
         int dy[] = {1,-1,0,0};
         // std bfs
-        int ans=Integer.MAX_VALUE;
+       int ans = Integer.MAX_VALUE;
         Queue<Node> q = new LinkedList<>();
         boolean vis[][][] = new boolean[m][n][k+1];
         vis[0][0][0] = true;
@@ -60,12 +60,10 @@ class Solution {
             
             // ans
             if(curr.x ==m-1 && curr.y ==n-1)
-            // return curr.dist;
-          {
-              ans = Math.min(ans, curr.dist);
-              return ans;
-          }
-        
+            {
+                ans = Math.min(ans, curr.dist);
+                return ans;
+            }
             
             //have to traveres in all neg
             for(int i=0; i<4; i++)
