@@ -33,74 +33,65 @@ class GFG
 }
 // } Driver Code Ends
 
-
+class Pair
+{
+     int x; int y;
+    Pair(int x, int y)
+    {
+        this.x=x; this.y=y;
+    }
+}
 class Solution
 {
-
-   
-	//Function to find distance of nearest 1 in the grid for each cell.
+    //Function to find distance of nearest 1 in the grid for each cell.
     public int[][] nearest(int[][] grid)
     {
-        int n = grid.length;
-        int m = grid[0].length;
+        // Code here
+        //s1
+        int dx[]= { 1, -1, 0 , 0};
+        int dy[] = { 0,0,1,-1};
         
-            int[] dx = {1, -1, 0, 0};
-            int[] dy = {0, 0, 1, -1};
-    
-        
-        //using dp list which will store the output.
-        int[][] dp = new int[n][m];
-        
-        for(int i=0; i<n; i++)
-            for(int j=0; j<m; j++)
-                dp[i][j] = Integer.MAX_VALUE;
-        
-        //queue to store the cell indexes which have grid value 1.
-        Queue<ArrayList<Integer>> q = new LinkedList<>(); 
-        
-        
-        //traversing all the cells of the matrix.
-        for(int i = 0; i < n; i++)
+        int m = grid.length; int n= grid[0].length;
+        //s2
+        int ans[][] = new int[m][n];
+        for(int i=0; i<m; i++)
         {
-			for(int j = 0; j < m; j++)
-			{
-			    //if grid value is 1, we update the dp value at same cell as 0 
-			    //and push the cell indexes into queue.
-				if(grid[i][j] == 1){
-					dp[i][j] = 0;
-					ArrayList<Integer> temp = new ArrayList<>();
-					temp.add(i);
-					temp.add(j);
-					q.add(temp);
-				}
-			}
-		}
-		
-		while(!q.isEmpty())
-		{
-		    //storing the cell indexes at top of queue and popping them.
-			ArrayList <Integer> curr = q.poll();
-			int x = curr.get(0);
-			int y = curr.get(1);
-			
-			//iterating over the adjacent cells.
-			for(int i = 0; i < 4; i++)
-			{
-				int n_x = x + dx[i];
-				int n_y = y + dy[i];
-				
-				if((n_x>=0 && n_x<n && n_y>=0 && n_y<m)&& dp[n_x][n_y] > dp[x][y])
-				{
-				    //updating dp and pushing cell indexes in queue.
-					dp[n_x][n_y] = dp[x][y] + 1;
-					ArrayList<Integer> temp = new ArrayList<>();
-					temp.add(n_x);
-					temp.add(n_y);
-					q.add(temp);
-				}
-			}
-		}
-		//returning the dp list.
-		return dp;
+            for(int j=0; j<n; j++)
+            ans[i][j] = Integer.MAX_VALUE;
+        }
+       
+       //s3
+       Queue<Pair> q = new LinkedList<>();
+       for(int i=0; i<m; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    ans[i][j] =0;
+                    q.add(new Pair(i,j));
+                }
+            }
+        }
+        //s4 std BFS
+        while(!q.isEmpty())
+        {
+            Pair t = q.remove();
+            for(int i=0; i<4; i++)
+            {
+                int new_x = t.x + dx[i];
+                int new_y = t.y + dy[i];
+                
+                if((new_x>=0 && new_x<m && new_y>=0 && new_y<n)&& 
+                ans[new_x][new_y] > ans[t.x][t.y])
+                {
+                    ans[new_x][new_y] = ans[t.x][t.y] +1;
+                    q.add(new Pair(new_x, new_y));
+                }
+                
+            }
+        }
+        return ans;
+        
     }
 }
