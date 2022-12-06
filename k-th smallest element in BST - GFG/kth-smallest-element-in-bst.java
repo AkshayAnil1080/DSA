@@ -104,24 +104,48 @@ class GFG {
 
 class Solution {
     // Return the Kth smallest element in the given BST
-    public int KthSmallestElement(Node root, int k) {
+    public int KthSmallestElement(Node root, int K) {
         // Write your code here
-        ArrayList<Integer> al = new ArrayList<>();
-        inorder(root, al);
+        Node ans = morris(root, K);
         
-        if(k>al.size())
-        return -1;
-        
-        return al.get(k-1);
-        
+        return (ans!=null) ? ans.data : -1;
     }
-    void inorder(Node root,  ArrayList<Integer> al)
+    Node morris(Node curr, int k)
     {
-        if(root!=null)
+        while(curr!=null)
         {
-            inorder(root.left, al);
-            al.add(root.data);
-            inorder(root.right, al);
+            if(curr.left==null)
+            {
+                // print root node
+                if(k==1) return curr;
+                k--;
+                curr=curr.right;
+            }
+            else
+            {
+                Node prev = curr.left;
+                while(prev.right!= null && prev.right!=curr)
+                prev = prev.right;
+                
+                if(prev.right==null) // thread is not there
+                {
+                    // make the thread
+                    prev.right = curr;
+                    curr= curr.left;
+                }
+                else // there is a thread;
+                {
+                    
+                    //remove it
+                    prev.right = null;
+                   
+                    if(k==1) return curr;
+                     k--;
+                    //print the data
+                    curr = curr.right;
+                }
+            }
         }
+        return null;
     }
 }
