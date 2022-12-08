@@ -24,32 +24,19 @@ class BlackAndWhite
     //white Knight on this chessboard such that they cannot attack each other.
     static long numOfWays(int n, int m)
     {
-        // add your code here
-        int dx[]= {2, 2, 1, 1, -1, -1, -2, -2 };
-        int dy[]= {-1, -1, -2, 2, -2, 2, -1, 1};
-        
-        // 
         long mod = 1000000007;
-        long total  = ((m*n)%mod * (m*n-1)%mod )%mod;
-        long attack =0;
+        long total =( (m*n)%mod *(m*n-1)%mod)%mod;
         
-        //s3
-        for(int i =0; i<n; i++)
+        if(n>=1 && m>=2)
         {
-            for(int j =0; j<m; j++)
-            {
-                // traverese for 8 moves
-                for(int k=0; k<8; k++)
-                {
-                    int x = i+dx[k];
-                    int y = j+dy[k];
-                    
-                    //this is in bound -> attack
-                    if(x>=0 && x<n && y>=0 && y<m)
-                    attack ++;
-                }
-            }
+            total -=  4*(n-1)*(m-2);
         }
-        return (total%mod - attack%mod)%mod;
+        if(m>=1 && n>=2)
+        {
+            total -=  4*(m-1)*(n-2);
+            
+        }
+        
+        return total;
     }
 }
