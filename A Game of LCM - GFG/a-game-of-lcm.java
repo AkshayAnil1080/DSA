@@ -51,6 +51,19 @@ class GFG {
 //         return gcd(b,a%b);
 //     }
 // }
+// What was happening for n=18
+// a/q to our prev code
+// z = lcm(18,17,16,15) = 36720
+// num = lcm(18,17,13,11) - such that all are coprimes -> 43758
+
+// But,
+// if we run the same code for n-1 - Why ? Checking if any other comb having max lcm
+// z1 = lcm(17,16,15,14) -> 28560
+// num1 =  lcm(17,16,15,13) -> 53040( this is the expected output)
+
+// -> that means for every n, we have to run our previous code for n and n-1 and take the max.
+// -> Changes in code - i ran the same code into a function name "solve" and returned max for n, n-1;
+
 
 class Solution {
     long maxGcd(int N) {
