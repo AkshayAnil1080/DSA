@@ -126,18 +126,20 @@ class Solution {
        //code here
         ArrayList<Integer> ans = new  ArrayList<Integer>();
         
+        //s1
          Queue<Node> q = new LinkedList<Node>();
         q.add(node);
+        
+        //s2
         while (!q.isEmpty()) {
             
             int n = q.size(); int curr_max = Integer.MIN_VALUE;
-            for(int i=0; i<n; i++)
+            for(int i=0; i<n; i++) // size of queue for each level
             {
                 Node tempNode = q.poll();
                 curr_max = Math.max(curr_max, tempNode.data);
                 
-            // System.out.print(tempNode.data + " ");
- 
+            
             /*Enqueue left child */
             if (tempNode.left != null) {
                 q.add(tempNode.left);
