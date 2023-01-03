@@ -33,7 +33,7 @@ class Solution {
         int[] dp = new int[H.length];
         int len = 0;
         for (int num : H) {
-            int idx = Arrays.binarySearch(dp, 0, len, num);
+                int idx = Arrays.binarySearch(dp, 0, len, num);
             if (idx < 0) {
                 idx = -(idx + 1); // BS if ele not present retun -(desired pos + 1)
             }
