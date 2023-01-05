@@ -14,6 +14,7 @@ class Solution
         // Every index of prime stores zero or one
         // If prime[i] is zero means i is not a prime
         // If prime[i] is one means i is a prime
+        /// eff Sieve
         prime = new int[10000];
         Arrays.fill(prime,1); // every num isprime
         prime[1]=0; 
@@ -25,47 +26,44 @@ class Solution
                 prime[j]=0; // mark not prime
             }
         }
-        
     }
     
     public int shortestPath(int num1,int num2){
         // Complete this function using prime array
-        // bfs for every poss
         
-        int ans[] = new int[10000];
+         int ans[] = new int[10000];
         Arrays.fill(ans, -1);
         boolean vis[] = new boolean[10000];
         Queue<Integer> q = new LinkedList<>();
         q.add(num1); vis[num1]=false; ans[num1]=0;
         
         while(!q.isEmpty())
+    {
+        int curr = q.poll();
+        if(vis[curr]) continue;
+        
+        //two for
+        String x = Integer.toString(curr);
+        for(int i=0; i<4; i++)
+        
+        for( char ch='0'; ch<='9'; ch++)
         {
-            int curr =  q.poll();
-            // if vis , skip
-            if(vis[curr]) continue;
+            if(ch==x.charAt(i) || (ch=='0' & i==0)) continue;
             
-            String x = Integer.toString(curr);
-            for(int i=0; i<4; i++)
+            String y = x.substring(0,i) + ch + x.substring(i+1);
+            
+            //
+            int z = Integer.valueOf(y);
+            if(prime[z]==1 && ans[z]==-1)
             {
-                for(char ch='0'; ch<='9'; ch++)
-                {
-                    // should be a four digit prime number with no leading zeros.
-                    if ( (ch=='0'&&i==0) || ch==x.charAt(i))
-                    continue;
-                    
-                    String y = x.substring(0,i) + ch + x.substring(i+1);
-                    
-                    //conver in int and pushto Q if cond are satisfies
-                    int z = Integer.valueOf(y);
-                    if(prime[z]==1 && ans[z]==-1)
-                    {
-                        ans[z] = 1+ans[curr];
-                        q.add(z);
-                    }
-                }
+                ans[z] = 1+ ans[curr];
+                q.add(z);
             }
         }
-        return ans[num2];
+    }
+    return ans[num2];
+        
+        
         
     }
 }
