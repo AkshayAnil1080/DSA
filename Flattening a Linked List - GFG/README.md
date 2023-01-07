@@ -39,7 +39,7 @@ node in a single level.<strong>
 8          50 
 |                           
 30              
-<strong>Output:</strong> 5-&gt;7-&gt;8-&gt;10-&gt;19-&gt;20-&gt;22-&gt;30-&gt;50
+<strong>Output:</strong> 5-&gt;7-&gt;8-&gt;10-&gt;19-&gt;22-&gt;28-&gt;30-&gt;50
 <strong>Explanation:</strong>
 The resultant linked lists has every
 node in a single level.
