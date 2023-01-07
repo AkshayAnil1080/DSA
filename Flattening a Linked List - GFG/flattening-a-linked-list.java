@@ -117,6 +117,25 @@ class Node
 */
 /*  Function which returns the  root of 
     the flattened linked list. */
+
+
+/*Node class  used in the program
+class Node
+{
+	int data;
+	Node next;
+	Node bottom;
+	
+	Node(int d)
+	{
+		data = d;
+		next = null;
+		bottom = null;
+	}
+}
+*/
+/*  Function which returns the  root of 
+    the flattened linked list. */
 class GfG
 {
     Node flatten(Node root)
@@ -137,7 +156,7 @@ class GfG
         if(y==null) return x;
         
          Node ans;
-        if(x.data < y.data)
+        if(x.data <= y.data)
         {
             ans =x;
             ans.bottom = merge_two_sorted(x.bottom,y);
