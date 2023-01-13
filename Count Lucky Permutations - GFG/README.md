@@ -4,7 +4,7 @@
 Your task is to find the number of lucky permutations of the&nbsp;given array.<strong>&nbsp;</strong></span></p>
 
 <blockquote>
-<p><span style="font-size:18px">An array permutation is said to be lucky if for every node <strong>V<sub>i&nbsp; </sub>[1 &lt; i &lt; N-1]</strong> in the array there exists an edge between the nodes&nbsp;<strong>V</strong><sub><strong>i</strong>&nbsp;</sub>and <strong>V<sub>i+1&nbsp;</sub></strong>in the given graph.</span></p>
+<p><span style="font-size:18px">An array permutation is said to be lucky if for every node <strong>V<sub>i&nbsp; </sub>[1 &lt;= i &lt;= N-1]</strong> in the array there exists an edge between the nodes&nbsp;<strong>V</strong><sub><strong>i</strong>&nbsp;</sub>and <strong>V<sub>i+1&nbsp;</sub></strong>in the given graph.</span></p>
 </blockquote>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -35,7 +35,7 @@ Out of the 3 possible permutations,
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
 <pre><span style="font-size:18px"><strong>Input:
-</strong>n = 2, m = 1
+</strong>N = 2, M = 1
 arr = {1, 1}
 graph = {{1, 2}}
 <strong>Output :</strong>
@@ -58,5 +58,5 @@ You don't need to read input or print anything. Your task is to complete the fun
 2 ≤ N ≤ 15<br>
 1 ≤ M&nbsp;≤ (N*(N-1))/2<br>
 1&nbsp;≤&nbsp; arr[i], graph[i][j] ≤ N&nbsp;<br>
-There are no self loops and repeated edges in the graph.</span></p>
+There are no self-loops and repeated edges in the graph.</span></p>
 </div>
