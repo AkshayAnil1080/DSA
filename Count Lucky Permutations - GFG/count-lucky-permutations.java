@@ -35,38 +35,50 @@ int i=0;
 
 // User function Template for Java
 
-
 class Solution {
-
+    int adj[][] = new int[16][16];
+    long dp[][] = new long[1<<16][16];
     long luckyPermutations(int N, int M, int arr[], int[][] graph) {
-
-        long dp[][] = new long[N][1 << N];
-        int adj[][] = new int[N][N];
-
-        for (int i = 0; i < N; i++) {
-            dp[i][1 << i] = 1;
+        // Code here
+        
+        //S1
+        for(int i=0; i<M ;i++)
+        {
+            int u = graph[i][0]; int v= graph[i][1];
+            adj[u][v]=1; adj[v][u]=1;
         }
-
-        for (int i = 0; i < M; i++) {
-            adj[graph[i][0] - 1][graph[i][1] - 1] = 1;
-            adj[graph[i][1] - 1][graph[i][0] - 1] = 1;
-        }
-        for (int bitmask = 1; bitmask < (1 << N); bitmask++) {
-            for (int i = 0; i < N; i++) {
-                if ((1 & (bitmask >> i)) > 0) {
-                    for (int j = 0; j < N; j++) {
-                        if (j != i && arr[j] != arr[i] &&
-                            ((1 & (bitmask >> j)) > 0) && adj[arr[i]-1][arr[j] - 1]==1) {
-                            dp[i][bitmask] += dp[j][bitmask ^ (1 << i)];
-                        }
-                    }
-                }
+        for(long x[]: dp)
+        Arrays.fill(x,-1);
+        //s2
+        int mask=(1<<N)-1;
+        return solve(arr, mask, -1);
+        
+    }
+    long solve(int arr[], int mask, int prev)
+    {
+        if(prev!=-1 && dp[mask][prev]!=-1)
+        return dp[mask][prev];
+        
+        
+        if(mask==0) return 1;
+        
+        long count=0;
+        for(int i=0; i<arr.length; i++)
+        {
+            // 
+            if(( mask&(1<<i) )>0) // ith index is taken - checking ith bit is set
+            {
+                int curr = arr[i];
+                // so i can take it now - either it should be a st point
+                // or connections exists of curr with prev
+                if( (prev==-1) || (adj[prev][curr]==1))
+                count+= solve(arr, mask^(1<<i), curr);
+                
             }
+            
         }
-        long ans = 0;
-        for (int i = 0; i < N; i++) {
-            ans += dp[i][(1 << N) - 1];
-        }
-        return ans;
+        //store the ans
+         if(prev>0) dp[mask][prev] = count;
+        return count;
     }
 }
