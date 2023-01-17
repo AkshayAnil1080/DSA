@@ -109,23 +109,24 @@ class Solution {
     //Function to find first node if the linked list has a loop.
     public static int findFirstNode(Node head){
         //code here
-        Node slow_p = head; Node fast_p = head;
-        while(fast_p!=null && fast_p.next!=null)
+        Node slow = head; Node fast = head;
+        while(fast!=null && fast.next!=null)
         {
-            slow_p = slow_p.next;
-            fast_p = fast_p.next.next;
+            slow = slow.next;
+            fast = fast.next.next;
             
-            if(fast_p == slow_p)
-           {
-               slow_p = head;
-               while(fast_p!=slow_p)
-               {
-                   fast_p = fast_p.next;
-                   slow_p = slow_p.next;
-               }
-               return slow_p.data;
-           }
-            //   return slow_p.data;
+            if(slow==fast)
+            {
+                //loop exists
+                slow = head;
+                while(slow!=fast)
+                {
+                    fast= fast.next;
+                    slow = slow.next;
+                    
+                }
+                return slow.data;  // return fast.data
+            }
         }
         return -1;
     }
