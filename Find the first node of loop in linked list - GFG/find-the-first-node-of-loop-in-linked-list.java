@@ -121,11 +121,11 @@ class Solution {
                 slow = head;
                 while(slow!=fast)
                 {
-                    fast= fast.next;
+                    // fast= fast.next;
                     slow = slow.next;
-                    
+                    fast= fast.next;
                 }
-                return slow.data;  // return fast.data
+                return fast.data;  // return fast.data
             }
         }
         return -1;
