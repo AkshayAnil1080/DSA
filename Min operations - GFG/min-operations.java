@@ -38,10 +38,10 @@ class Solution {
         if((a&b)==Math.min(a,b))  // eg 12 , 2  -> i picked x as 2 and ele as a -> a=a&x=12&2=2
         return 1;
         
-        if((a&b)>=0 && (a&b)<Math.min(a,b))
-        return 2;
-        
-        return 0;
+       if((a&b)>=0 && (a&b)<Math.min(a,b))
+       return 2;
+       
+       return 0;
     }
 }
         
