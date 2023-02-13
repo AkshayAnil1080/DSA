@@ -33,7 +33,6 @@ class GFG{
 class Solution{
 	int minCost(int [][] col, int N){
         //Write your code here
-         
         int dp[][] = new int[N][3]; // bcoz given 3 colors.
         
         //s2  - fill 1st row of dp with 1st col of colors
@@ -44,8 +43,8 @@ class Solution{
         for(int i=1 ; i<N ;i++)
         {
             dp[i][0]  = col[i][0] + Math.min(dp[i-1][1] , dp[i-1][2]);
-             dp[i][1]  =col[i][1] + Math.min(dp[i-1][0] , dp[i-1][2]);
-              dp[i][2]  = col[i][2] + Math.min(dp[i-1][0] , dp[i-1][1]);
+             dp[i][1]  = col[i][1] + Math.min(dp[i-1][0] , dp[i-1][2]);
+              dp[i][2]  =  col[i][2] + Math.min(dp[i-1][0] , dp[i-1][1]);
         }
         
         return Math.min(Math.min(dp[N-1][0], dp[N-1][1]) , dp[N-1][2] );
