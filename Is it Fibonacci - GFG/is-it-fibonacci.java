@@ -109,15 +109,27 @@ class FastIO
 class Solution {
     static long solve(int n, int k, ArrayList<Long> arr) {
         //code here
-         for(int i=k; i<n; i++)  // itr for n-k ele
-        {
-            long sum=0;
-            for(int j=i-k; j<i; j++) // traverse k times back and maintain the sum.
-            {
-                sum += arr.get(j);
-            }
-            arr.add(sum);
+        //make al
+         long sum = 0;
+        List<Long> al = new ArrayList<>();
+
+        // calculte sum of k ele and push all k ele as well
+        for (long x : arr) {
+            sum += x;
+            al.add(x);
         }
-        return arr.get(n-1); //return the last ele.
+        
+        //maintain a ptr start
+        int start = 0;
+        // run loop for k-n ele
+        while (al.size() < n) {
+            al.add(sum);
+           
+            sum += sum;
+            sum -= al.get(start);
+            start++;
+        }
+        //return last ele
+        return al.get(n - 1);
     }
 }
