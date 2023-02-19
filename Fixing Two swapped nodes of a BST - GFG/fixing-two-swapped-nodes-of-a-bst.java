@@ -173,58 +173,32 @@ class Node {
 */
 
 class Solution {
+    
+     Node first = null; Node second =null;
+    Node prev = null;
     public Node correctBST(Node root) {
         // code here.
-         ArrayList<Integer> al = new ArrayList<>();
-        inorder(al, root);
+        fixBst(root);
         
-         int prev= Integer.MIN_VALUE;
-        int first = -1; int second= -1;
+        int temp = first.data;
+        first.data = second.data;
+        second.data = temp;
         
-        for(int i=0; i<al.size(); i++)
-        {
-            if(al.get(i) < prev) // pt of violation of increasing order
-            {
-                if(first==-1)
-                first=prev;
-                
-                second = al.get(i);
-            }
-            prev=al.get(i);
-        }
-        //  System.out.println(first+" "+ second);
-         
-         Node a = search(root, first);   Node b = search(root, second);
-           int temp  = a.data;
-            a.data =  b.data;
-            b.data = temp;
-         
         return root;
     }
     
-      void inorder(ArrayList<Integer> al, Node root)
+    void fixBst(Node root)
     {
-        if(root!=null)
+        if(root==null) return;
+        
+        fixBst(root.left);
+        if(prev!=null && root.data<prev.data)
         {
-            inorder(al, root.left);
-            al.add(root.data);
-            inorder(al, root.right);
+            if(first==null) first=prev;
+            
+            second = root;
         }
-        
-    }
-    
-     Node search(Node root, int x)
-    {
-        if (root==null) return null;
-        
-        if(root.data == x)
-        return root;
-        
-       Node r = search(root.right, x);
-        if(r!=null) return r;
-        
-        Node l = search(root.left, x);
-        return l;
-       
+        prev =root;
+        fixBst(root.right);
     }
 }
