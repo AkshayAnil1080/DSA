@@ -155,24 +155,24 @@ class Node{
 class Solution {
     public void connect(Node root) {
         // code here
-        // s1
-         Queue<Node> q = new LinkedList<Node>();
-        q.add(root);
-        q.add(null);
-        
-        while (!q.isEmpty())
+        Queue<Node> q = new LinkedList<Node>();
+         q.add(root); 
+ 
+        Node temp = null; 
+        while (!q.isEmpty()) 
         {
-            Node temp = q.poll();
-            if(temp!=null)
-            {
-                temp.nextRight = q.peek();
-                if(temp.left!=null) q.add(temp.left);
-                    
-                if (temp.right != null)  q.add(temp.right);
-            }
-            else if(!q.isEmpty())
-            q.add(null);
             
+            int n = q.size();
+            for (int i = 0; i < n; i++) 
+            {
+                Node prev = temp;
+                temp = q.poll();
+ 
+                if (i > 0) prev.nextRight = temp;
+                if (temp.left != null)  q.add(temp.left);
+                if (temp.right != null) q.add(temp.right);
+            }
+            temp.nextRight = null; // handling last ele of each level
         }
     }
 }
