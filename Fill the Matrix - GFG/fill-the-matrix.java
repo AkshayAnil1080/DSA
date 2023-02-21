@@ -6,68 +6,16 @@ import java.util.*;
 
 // } Driver Code Ends
 //User function Template for Java
- class pair
-{
-    int first, second;
-     
-    public pair(int first, int second) 
-    {
-        this.first = first;
-        this.second = second;
-    }   
-}
-// 2nd class pair
+
 class Solution
 {
 	public static int minIteration(int N, int M, int x, int y){
 		//code here
-		int mat[][] =new int[N][M];
-		mat[x-1][y-1]=1;
-		Queue<pair> q = new LinkedList<>();
-		q.add(new pair(x-1, y-1));
-		
-		int level=0;
-		//BFS
-		
-	
-		//utr in this curr level size - process all 4 neigh
-		 while (!q.isEmpty()) //// q not empty
-        {
-            int qsize = q.size();  //	level size
-            while (qsize-- > 0)  //	itr in this curr level size - process all 4 neigh
-         {
-            pair p  = q.peek();
-            q.remove();
-             
-            int i = p.first;
-            int j = p.second;
-            
-            //
-            if ((j+1 < M) && mat[i][j + 1] == 0)//right
-            {
-                mat[i][j + 1] = 1;
-                q.add(new pair(i, j + 1));
-            }
-             if ((i+1 < N) && mat[i+1][j] == 0)//down
-            {
-                mat[i+1][j] = 1;
-                q.add(new pair(i+1, j));
-            }
-             if ((j-1 >=0) && mat[i][j-1] == 0)//left
-            {
-                mat[i][j-1] = 1;
-                q.add(new pair(i, j-1));
-            }
-             if ((i-1>=0 ) && mat[i-1][j] == 0) //top
-            {
-                mat[i-1][j] = 1;
-                q.add(new pair(i-1,j));
-            }
-            
-         }
-        level++;
-	}
-	return level-1;
+		int ans=0;
+		for(int i=1;i<=N;i++)
+			for(int j=1;j<=M;j++)
+				ans=Math.max(ans,Math.abs(x-i)+Math.abs(y-j));
+		return ans;
 	}
 }
 
