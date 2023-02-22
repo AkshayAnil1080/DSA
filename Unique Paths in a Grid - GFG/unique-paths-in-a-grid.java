@@ -34,31 +34,38 @@ class GFG {
 //User function Template for Java
 
 class Solution {
-    static int path[][];
     static int mod = 1000000007;
+    static int path[][];
     static int uniquePaths(int r, int c, int[][] grid) {
         // code here
-        path = new int[r][c];
-        for(int x[] : path)
-        Arrays.fill(x, -1);
+        path = new int[r][c]; // all 0
         
+      
+        path[0][0] = grid[0][0]==1 ? 1:0;
         
-         return dfs(0,0,r,c,grid);
+          //first col
+        for(int i=1; i<r ;i++)
+        {
+            if(grid[i][0]==1)
+            path[i][0] = path[i-1][0];
+        }
+        
+        //first row
+        for(int i=1; i<c ;i++)
+        {
+            if(grid[0][i]==1)
+            path[0][i] = path[0][i-1];
+        }
+        //rest 
+        for(int i=1; i<r; i++)
+        {
+            for(int j=1; j<c; j++)
+            {
+                if(grid[i][j]==1)
+                path[i][j] = (path[i-1][j] %mod + path[i][j-1] %mod)%mod;
+            }
+        }
+       return path[r-1][c-1];
         
     }
-    static int dfs(int i, int j, int r, int c,int grid[][])
-    {
-        if(i>=r || j>=c || i<0 || j<0) return 0;
-        if(grid[i][j]==0) return 0;
-        
-        //bc
-        if(i==r-1 && j==c-1) return 1;
-        
-        //
-        if(path[i][j]!=-1) return path[i][j];
-        
-        return  path[i][j] = ( dfs(i,j+1, r,c, grid)%mod + dfs(i+1, j, r, c, grid)%mod )%mod;
-        
-    }
-    
 };
