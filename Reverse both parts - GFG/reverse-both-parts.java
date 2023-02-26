@@ -121,6 +121,46 @@ class Solution {
 }
    
    
+// //   c++
+// class Solution
+// {
+// public:
+   
+//     Node *reverse(Node *head, int k)
+//     {
+//         // code here
+//          Node* curr = head;
+//             for (int i = 1; i < k; i++) {
+//                 curr = curr->next;
+//             }
+//             Node* new_head = curr->next;
+//             curr->next = NULL;
+            
+//             Node* r1 = reverse(head);
+//             Node* r2 = reverse(new_head);
+            
+//             curr = r1;
+//             while (curr->next != NULL)
+//                 curr = curr->next;
+            
+//             curr->next = r2;
+            
+//             return r1;
+//     }
+//      static Node* reverse(Node* head) {
+//             Node* curr = head; 
+//             Node* prev = NULL; 
+//             Node* next = NULL;
+//             while (curr != NULL) {
+//                 next = curr->next;
+//                 curr->next = prev;
+//                 prev = curr;
+//                 curr = next;
+//             }
+//             return prev;
+//         }
+// };
+   
    
    
    
