@@ -32,7 +32,6 @@ class GFG {
 
 
 // User function Template for Java
-
 class Solution {
    int v_count;
     int e_count;
@@ -47,7 +46,7 @@ class Solution {
             if(!vis[i])
             {
                 v_count=e_count=0;
-                dfs(adj, i);
+                bfs(adj, i);
             
             if(e_count == (v_count *(v_count-1))) ans++;
             
@@ -56,15 +55,23 @@ class Solution {
         return ans;
         
     }
-    void dfs(ArrayList<ArrayList<Integer>> adj, int st)
+    void bfs(ArrayList<ArrayList<Integer>> adj, int st)
     {
-        vis[st]=true;
-        v_count++; e_count += adj.get(st).size();
-        //itr for nei
-        for(int nei : adj.get(st) )
-        {
-            if(!vis[nei])
-             dfs(adj, nei);
+        Queue<Integer> q = new LinkedList<>();
+        vis[st] = true;
+        v_count++;
+        e_count += adj.get(st).size();
+        q.add(st);
+        while(!q.isEmpty()){
+            int node = q.poll();
+            for(int nei : adj.get(node)){
+                if(!vis[nei]){
+                    vis[nei] = true;
+                    v_count++;
+                    e_count += adj.get(nei).size();
+                    q.add(nei);
+                }
+            }
         }
     }
 }
