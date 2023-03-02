@@ -36,16 +36,16 @@ class Solution{
         long len = gcd(L,B);
         
         long no_of_sq = (L*B)/(len*len);
+        
         al.add(no_of_sq);
         al.add(len);
         
         return al;
+        
     }
-    
-     static long gcd(long a, long b)
+   static long gcd (long a, long b)
     {
         if(b==0) return a;
-        
-        return gcd(b,  a%b);
+        return gcd(b, a%b);
     }
 }
