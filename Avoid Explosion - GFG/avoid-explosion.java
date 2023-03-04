@@ -49,11 +49,11 @@ import java.io.*;
 // User function Template for Java
 
 class Solution {
-    int parent[];
+    int parent[]; int rank[];
     ArrayList<String> avoidExlosion(int mix[][], int n, int danger[][], int m) {
         // Code Here
          ArrayList<String> ans = new ArrayList<>();
-        parent = new int[n+1]; 
+        parent = new int[n+1]; rank = new int[n+1];
         
         for(int i=0; i<=n; i++)
         parent[i]=i;
@@ -80,18 +80,45 @@ class Solution {
         }
         return ans;
     }
-    void union(int x, int y)
-     {
-         int x_rep = find(x); int y_rep = find(y);
-         if(x_rep==y_rep) return;
-         parent[x_rep] =y_rep;
-     }
+    // void union(int x, int y)
+    //  {
+    //      int x_rep = find(x); int y_rep = find(y);
+    //      if(x_rep==y_rep) return;
+    //      parent[x_rep] =y_rep;
+    //  }
      
-       int find(int x)  //o(ht of tree calls) - O(logn)
+    //   int find(int x)  //o(ht of tree calls) - O(logn)
+    // {
+    //     if(parent[x] ==x)
+    //     return x;
+        
+    //     return find(parent[x]);
+    // }
+    
+    void union(int x, int y) // optimized rank by heights
     {
-        if(parent[x] ==x)
+        int x_rep = find(x); int y_rep = find(y);
+        if(x_rep == y_rep) return;
+        
+        if(rank[x_rep] < rank[y_rep])
+        {
+            parent[x_rep] = y_rep;
+        }
+        else if(rank[x_rep] > rank[y_rep])
+        parent[y_rep] = x_rep;
+        else
+        {
+            parent[y_rep] = x_rep;
+            rank[x_rep]++;
+        }
+    }
+    // find with path compression
+    int find(int x)
+    {
+        if(x==parent[x])
         return x;
         
-        return find(parent[x]);
+        return parent[x] = find(parent[x]);
+        
     }
 }
