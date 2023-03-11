@@ -104,39 +104,28 @@ class GFG {
 class Solution {
     public static ArrayList<Integer> solveQueries(int N, int num, int[] A, int[][] Q) {
         // code here
-       ArrayList<Integer> arr=new ArrayList<>();
-        int ans[][]=new int[N][N+1];
-        ///row - represents ele indx , col =.> freq of ele from by ith row from 0-n
-        //for each ele, count freq and store in ans[i][cnt]++;
-          for(int i=0;i<N;i++){
-            int count=0;
-            for(int j=i;j<N;j++)
-            {
-                if(A[i]==A[j]) count++;
-               
-            }
-            ans[i][count]++;
-        }
-        //prefix sum. 
-        // ans[3][2] =x => indx range [0,3] - in which no of ele having freq 2 is x
-         for(int i=1;i<N;i++)
-        {
-            for(int j=0;j<N+1;j++)
-            {
-                ans[i][j]+= ans[i-1][j];
-            }
-        }
-        
-        //itr fro queries
-        for(int i=0;i<num;i++)
+         ArrayList<Integer>  al = new  ArrayList<Integer>();
+    for(int i=0;i<num;i++)
         {
             int L=Q[i][0];
             int R=Q[i][1];
             int K=Q[i][2];
-            if(L==0)  arr.add(ans[R][K]);
-            else arr.add(ans[R][K] - ans[L-1][K]);
+            
+            int ans=0;
+            for(int j=L; j<=R; j++)
+            {
+                int count=0;
+                for(int m=j;m<N;m++)
+                {
+                    if(A[m]==A[j])
+                    count++;
+                }
+                if(count==K)
+                ans++;
+            }
+            al.add(ans);
         }
-        return arr;
+        return al;
     }
 }
         
