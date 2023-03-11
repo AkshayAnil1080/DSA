@@ -42,8 +42,8 @@ Q={{0,4,2},{0,4,1}}</span>
 <span style="font-size:18px"><strong>Output:</strong>
 1 1</span> 
 <strong><span style="font-size:18px">Explanation:</span></strong> 
-<span style="font-size:18px">For query 1: 0 4 4 
-L=0,R=4,K=4 
+<span style="font-size:18px">For query 1: 0 4 2 
+L=0,R=4,K=2 
 let, L&lt;=i&lt;=R 
 For i=0: frequency of a[i] i.e. 1 from i to n-1 is 5. 
 For i=1: frequency of a[i] i.e. 1 from i to n-1 is 4. 
