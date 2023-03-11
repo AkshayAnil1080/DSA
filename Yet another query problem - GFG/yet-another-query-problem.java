@@ -105,7 +105,17 @@ class Solution {
     public static ArrayList<Integer> solveQueries(int N, int num, int[] A, int[][] Q) {
         // code here
          ArrayList<Integer>  al = new  ArrayList<Integer>();
-    for(int i=0;i<num;i++)
+         int freq[] = new int[N];
+         for(int i=0; i<N; i++)
+         {
+             int cnt=0;
+             for(int j=i; j<N; j++)
+             if(A[i]==A[j]) cnt++;
+             
+             freq[i]=cnt;
+         }
+         
+         for(int i=0;i<num;i++)
         {
             int L=Q[i][0];
             int R=Q[i][1];
@@ -114,13 +124,7 @@ class Solution {
             int ans=0;
             for(int j=L; j<=R; j++)
             {
-                int count=0;
-                for(int m=j;m<N;m++)
-                {
-                    if(A[m]==A[j])
-                    count++;
-                }
-                if(count==K)
+                if(freq[j]==K)
                 ans++;
             }
             al.add(ans);
