@@ -62,25 +62,18 @@ class GfG {
 class Solution {
     public int[] findMaxRow(int mat[][], int N) {
         // code here
-        int res[] = new int[2];
-
-        int ans=0; int row=0;
+       int row=0; int j=N-1; int res[]= new int[2];
         for(int i=0; i<N; i++)
         {
-            int count=0;
-            for(int j=0; j<N; j++)
+           while(j>=0 && mat[i][j]==1)
             {
-                if(mat[i][j]==1)
-                count++;
+                row=i;
+                j--;
             }
-          
-            if(count>ans)
-            {
-                ans=count; row=i;
-            }
-            
         }
-        res[0]=row; res[1]=ans;
-        return res;
+        
+       res[0] = row;
+       res[1] = N-j-1;
+       return res;
     }
 };
