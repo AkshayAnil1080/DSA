@@ -40,6 +40,6 @@ You don't need to read input or print anything. Complete the function<strong>&nb
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 ≤ N&nbsp;≤&nbsp;10<sup>5</sup><br>
-1 ≤ A[]&nbsp;≤ N<br>
+1 ≤ A[]&nbsp;≤ 10<sup>5</sup><br>
 1 ≤ M&nbsp;≤ N</span></p>
 </div>
