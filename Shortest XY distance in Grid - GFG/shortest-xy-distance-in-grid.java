@@ -50,10 +50,10 @@ class Solution {
                 else {
                     if (i-1 >= 0)  //top
                         dist[i][j] = Math.min(dist[i][j], dist[i - 1][j] + 1);
-                    if(j+1<M) //right --
-                         dist[i][j] = Math.min(dist[i][j], dist[i][j + 1] + 1);
-                    if(i+1<N)//bottom --
-                         dist[i][j] = Math.min(dist[i][j], dist[i+1][j] + 1);
+                    // if(j+1<M) //right --
+                    //      dist[i][j] = Math.min(dist[i][j], dist[i][j + 1] + 1);
+                    // if(i+1<N)//bottom --
+                        //  dist[i][j] = Math.min(dist[i][j], dist[i+1][j] + 1);
                     if (j-1>=0) //left
                         dist[i][j] = Math.min(dist[i][j], dist[i][j - 1] + 1);
                       
@@ -66,14 +66,14 @@ class Solution {
                 if (grid.get(i).get(j) == 'X')
                     dist[i][j] = 0;
                 else {
-                    if (i-1 >= 0)  //top
-                        dist[i][j] = Math.min(dist[i][j], dist[i - 1][j] + 1);
+                    // if (i-1 >= 0)  //top
+                    //     dist[i][j] = Math.min(dist[i][j], dist[i - 1][j] + 1);
                     if(j+1<M) //right --
                          dist[i][j] = Math.min(dist[i][j], dist[i][j + 1] + 1);
                     if(i+1<N)//bottom --
                          dist[i][j] = Math.min(dist[i][j], dist[i+1][j] + 1);
-                    if (j-1>=0) //left
-                        dist[i][j] = Math.min(dist[i][j], dist[i][j - 1] + 1);
+                    // if (j-1>=0) //left
+                    //     dist[i][j] = Math.min(dist[i][j], dist[i][j - 1] + 1);
                       
                 }
             }
