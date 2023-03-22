@@ -60,9 +60,8 @@ class Solution
     public static int maxDifferenceBST(Node root,int target)
     {
         //Please code here
-        //find target in BST and keep track of sum of nodes
         int sum=0;
-        Node curr=root;
+        Node  curr=root;
         while(curr!=null)
         {
             if(curr.data==target)
@@ -78,28 +77,30 @@ class Solution
                 curr=curr.left;
             }
         }
-        // u reached the end of tree -> target not found
-        if(curr==null) return -1;
-        else 
-        {   //reached target ans its the leaf node itself
-            if(curr.left==null && curr.right==null)
-            {
-                return sum;
-            }
-            //now have to cover each path , comparing which path gives min value,
-            // while traversing the path maintiain path sum and if reached leaves return the max diff
-            res=Integer.MIN_VALUE;
-            if(curr.left!=null)
-            solve(curr.left,0,sum);
-            
-            if(curr.right!=null)
-            solve(curr.right,0,sum);
-            
-            return res;
+       if(curr==null)
+       return -1;
+       
+       else{
+           
+           if(curr.left==null && curr.right==null)
+           return sum;
+           //now have to cover each path , comparing which path gives min value,
+        // while traversing the path maintiain path sum and if reached leaves return the max diff
+        res=Integer.MIN_VALUE;
+        if(curr.left!=null)
+        {
+            solve(curr.left, 0, sum);
         }
         
+        if(curr.right!=null)
+        {
+            solve(curr.right, 0, sum);
+        }
+       }
+       return res;
+        
     }
-    static void solve(Node root, int path_sum , int sum)
+     static void solve(Node root, int path_sum , int sum)
     {
         
         if(root==null)
