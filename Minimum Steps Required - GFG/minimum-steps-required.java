@@ -25,7 +25,7 @@ class GFG{
 class Solution{
 	int minSteps(String str) {
 		//Write your code here
-	int cnt=0;
+	 int cnt=0;
     for(int i=1; i<str.length(); i++)
     {
         if(str.charAt(i-1)!=str.charAt(i))
