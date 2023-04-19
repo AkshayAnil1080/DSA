@@ -25,35 +25,35 @@ class GFG{
 
 
 //User function Template for Java
+       
 class Solution 
 { 
     boolean wifiRange(int N, String S, int X) 
     { 
-        // code here
-        boolean vis[] = new boolean[N];
-        for(int i=0;i<N;i++)
+        int A[] = new int[N]; Arrays.fill(A,100009);
+       
+        int B[] = new int[N]; Arrays.fill(B,100009);
+        
+        int cur = 100009;
+        for(int i = 0; i < N; i++)
         {
-            if(S.charAt(i)=='1')
-            {
-               
-             vis[i]=true; 
-            
-            for(int j=i+1;j<=i+X && j<N ;j++ )
-            vis[j]=true;
-            
-            for(int j=i-1;j>=0 && j>=i-X ;j--)
-            vis[j]=true;
-            }
-            
+            if(S.charAt(i) == '1')
+                cur = i;
+            A[i] = cur;
         }
-        //  for(int i=0; i<N; i++)
-        //  System.out.println(vis[i]);
-        for(int i=0; i<N; i++)
+        cur = 100009;
+        for(int i = N - 1; i >= 0; i--)
         {
-            if(vis[i]==false)
-            return false;
+            if(S.charAt(i) == '1')
+                cur = i;
+            B[i] = cur;
+        }
+        //condition to check if any room is not reachable
+        for(int i = 0; i < N; i++){
+            if(Math.abs(i - A[i]) > X && Math.abs(i - B[i]) > X){
+                return false;
+            }
         }
         return true;
     }
 } 
- 
