@@ -102,51 +102,34 @@ class GfG {
 
 //User function Template for Java
 
-
 class Solution
 {
+    static int ans;
     public static int goodSubtrees(Node root,int k)
     {
-        int ans=0;
-        Queue<Node> q = new LinkedList<>();
-       q.add(root);
-        while(!q.isEmpty())
-        {
-            Node cur = q.poll();
-            if(cur.left!=null)
-            {
-                q.add(cur.left);
-            }
-            if(cur.right!=null)
-            {
-                q.add(cur.right);
-            }
-           if(help_bfs(cur)<=k)
-           ans++;
-        }
+        ans=0;
+        help(root,k);
         return ans;
     }
-     
-
-     static int help_bfs(Node root)
-     {
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        HashSet<Integer> set = new HashSet<>();
-        while(!q.isEmpty())
-        {
-            Node cur = q.poll();
-            if(cur.left!=null)
-            {
-                q.add(cur.left);
-            }
-            if(cur.right!=null)
-            {
-                q.add(cur.right);
-            }
-            set.add(cur.data);
-        }
-        return set.size();
-     }
+    public static HashSet<Integer> help(Node root,int k)
+    {
+        if(root==null) return new HashSet<>();
+        HashSet<Integer> l = help(root.left, k);
+        HashSet<Integer> r = help(root.right, k);
+         
+         HashSet<Integer> tot =  new HashSet<>();
+         for(int x : l)
+         tot.add(x);
+         
+         for(int x : r)
+         tot.add(x);
+         
+         tot.add(root.data);
+         
+         if(tot.size()<=k)
+         ans++;
+         
+         return tot;
+        
+    }
 }
-
