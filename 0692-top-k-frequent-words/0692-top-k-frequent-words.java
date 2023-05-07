@@ -22,6 +22,6 @@ class Solution {
         { 
             ans.add(0,pq.remove());   // reversing the array list while adding in the list.e
         }
-        return ans;///
+        return ans;
     }
 }
