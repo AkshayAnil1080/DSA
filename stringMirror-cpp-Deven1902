@@ -1,0 +1,41 @@
+/* 
+Author : Deven Nandapurkar 
+
+Date : 07/05/2023
+
+Problem : String Mirror
+
+Difficulty : Easy
+
+You are given a string str of length n. You want to choose a non-zero integer k (k<=n), such that you can perform the following operation:
+Take the prefix of the string of length k and append the reverse of it to itself. 
+Your task is to find the lexicographically smallest string you can get.
+
+Problem Link : https://practice.geeksforgeeks.org/problems/d385b9d635b7b10eef6bf365b84922aaeec9eb98/1
+
+Cpp Solution 👇👇
+*/
+
+class Solution{
+public:
+    string stringMirror(string str){
+        // Code here
+
+        string ans; 
+
+        ans.push_back(str[0]);
+
+        for(int i=1; i<str.length(); i++) {
+            if(str[i-1] > str[i] || (i>1 && str[i] == str[i-1])) 
+                ans.push_back(str[i]);
+
+            else 
+                break; 
+        }
+
+        string curr = ans;
+        reverse(ans.begin() , ans.end()); 
+
+        return curr + ans; 
+    }
+};
