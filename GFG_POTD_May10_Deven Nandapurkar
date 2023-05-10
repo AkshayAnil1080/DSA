@@ -1,0 +1,52 @@
+/*  
+Author : Deven Nandapurkar
+
+Date : 10/05/2023
+
+Problem : Total cuts
+
+Difficulty : very hard
+
+You are given an array A of N integers and an integer K, 
+and your task is to find the total number of cuts that you can make such that for each cut these two conditions are satisfied. 
+
+1. A cut divides an array into two parts equal or unequal length (non-zero).
+
+2. Sum of the largest element in the left part and the smallest element in the right part is greater than or equal to K.
+
+Problem Link : https://practice.geeksforgeeks.org/problems/cbd515a00f6537180d2e66f1ffe11093a128e560/1
+
+Cpp Solution 👇👇
+*/
+
+class Solution{
+public:
+    int totalCuts(int N,int K,vector<int> &A){
+        // Code here
+        
+        vector<int> lmax(N,0);
+        vector<int> rmin(N,0);
+        int lm=0;
+        int rm=INT_MAX;
+        
+        if(N==1) return 0;
+        
+        for(int i=0;i<N;i++){
+            lm=max(lm,A[i]);
+            lmax[i]=lm;
+        }
+        for(int i=N-1;i>=0;i--){
+            rm=min(rm,A[i]);
+            rmin[i]=rm;
+        }
+        
+        
+        int ans=0;
+        for(int i=1;i<N;i++) {
+            if(lmax[i-1]+rmin[i] >=K) 
+                ans++;
+        }
+        
+        return ans;
+    }
+};
