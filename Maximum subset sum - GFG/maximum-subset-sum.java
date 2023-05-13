@@ -59,32 +59,20 @@ class Solution {
 
     public static long findMaxSubsetSum(int N, int[] A) {
         // code here
-    long[][] dp = new long[N + 1][2];
-        for (int i = 0; i <= N; i++) {
-            Arrays.fill(dp[i], -1);
+        
+        
+    long[][] dp = new long[N+1][2];
+        dp[0][0] = 0;
+        dp[0][1] = 0;
+        
+        for (int i = 1; i <= N; i++) 
+        {
+            dp[i][0] = dp[i-1][1];
+            dp[i][1] = Math.max(dp[i-1][0] + A[i-1], dp[i-1][1] + A[i-1]);
         }
         
-      return help(A,0,0,dp);
-        
-    }
-   static long help (int A[], int notTaken, int i,  long dp[][])
-    {
-        if(i==A.length) return 0;
-        // if(notTaken==1)
-        // return help(A, 0, i+1) + A[i];  // since taken mark it 0
-        
-        // // retun max
-        // return Math.max(help(A, 1, i+1), help(A, 0, i+1) + A[i] );
-        
-        if(dp[i][notTaken] !=-1) 
-        return dp[i][notTaken]; // since taken mark it 0
-        
-        
-         if(notTaken ==1) 
-         return dp[i][notTaken] = help(A,0, i+1 ,dp)+A[i];
-        // retun max
-        return dp[i][notTaken] = Math.max(help(A, 1, i+1, dp), help(A, 0, i+1, dp) + A[i] );
+        return Math.max(dp[N][0], dp[N][1]);
+
     }
 }
-
         
