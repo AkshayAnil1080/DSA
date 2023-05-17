@@ -1,3 +1,19 @@
+/*
+Author:- Deven Nandapurkar. 
+
+Date:- 17th May. 
+
+Problem:- There is a rectangular path for a Train to travel consisting of n rows and m columns. 
+The train will start from one of the grid's cells and it will be given a command in the form of string s consisting of characters L, R, D, U. 
+Find if it is possible to travel the train inside the grid only.
+
+Problem Link:- https://practice.geeksforgeeks.org/problems/trace-path3840/1 
+
+Difficulty Level:- Easy. 
+
+Cpp solution below 👇👇
+*/
+
 class Solution{
 public:
     int isPossible(int n, int m, string s){
@@ -37,3 +53,7 @@ public:
         
     }
 };
+
+// time complexity:- O(n) 
+
+// space complexity:- O(1) 
