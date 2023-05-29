@@ -50,7 +50,7 @@ class Solution
             adjacentSearch(board, word, i+1, j, len+1) || //down
             adjacentSearch(board, word, i, j-1, len+1) || //left
             adjacentSearch(board, word, i, j+1, len+1);   // right
-        board[i][j] = word.charAt(len);// i cannot find complete word in this path, reset the path and return to parent call.
+        // board[i][j] = word.charAt(len);// i cannot find complete word in this path, reset the path and return to parent call.
         return ans;
     }
     
