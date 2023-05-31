@@ -1,3 +1,12 @@
+// GFG POTD 
+// may 31
+// easy. 
+
+// Problem:- Frequency Game
+// Given an array A of size N. The elements of the array consist of positive integers. You have to find the largest element with minimum frequency.
+
+// this problem was previously asked in Google. 
+
 class Solution{
 public:
     int LargButMinFreq(int arr[], int n) {
@@ -24,3 +33,4 @@ public:
 };
 
 // time complexity :- O(N)
+// space complexity:- O(1)
