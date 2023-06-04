@@ -129,8 +129,9 @@ class Solution
         if(root!=null)
        {
         
-         ans = Math.min(ans, Math.abs(k-root.data));
+         
         ino(root.left,k);
+        ans = Math.min(ans, Math.abs(k-root.data));
         ino(root.right, k);
        }
         
