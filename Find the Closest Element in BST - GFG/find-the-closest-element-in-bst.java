@@ -111,7 +111,6 @@ class Node
     } 
 }
 */
-
 class Solution
 {
     //Function to find the least absolute difference between any node
@@ -131,10 +130,9 @@ class Solution
         
          
         ino(root.left,k);
-        ans = Math.min(ans, Math.abs(k-root.data));
+        ans = Math.min(ans, Math.abs(k-root.data));  //processing
         ino(root.right, k);
        }
         
     }
 }
-
