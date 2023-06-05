@@ -124,48 +124,45 @@ public static void findPreSuc(Node root, int key)
        You need to update these both.
        And the data inside these classes will be printed automatically by the driver code. 
     */
-  ArrayList<Integer> al  = new ArrayList<>();
-    ino(root,key,al);
     
-    int a1=-1; int a2=-1;
-       /*for(int i=0; i<al.size(); i++)
-       System.out.print(al.get(i)+ " ");*/
-    for(int i=0; i<al.size(); i++)
-    {
- 
-        if(al.get(i)>key)
-        {
-            a1= al.get(i);
-           if( (i-1)>=0 && al.get(i-1)!=key )
-               a2 = al.get(i-1);
-             
-            if((i-2)>=0 && al.get(i-1)==key  )
-                a2 =  al.get(i-2);
-                
-             break;
-        }
-        
-         if(i==al.size()-1 &&  al.get(i)<key) /// 1 6 8 10 , k=11
-        a2 = al.get(i);
-        
-         if(i==al.size()-1 &&  al.get(i)==key) // 1 5 8 25,  k=25
-             a2 = al.get(i-1);
-    }
-    
-        
-     pre = new Node(a2);
-     suc = new Node(a1);
-    
+     pre = floor(root,key);
+     suc = ceil(root, key);
 }
 
-  static void ino(Node root,int k, ArrayList<Integer> al )
+
+static Node ceil(Node root, int x)
+{
+    Node res =null;
+    while(root!=null)
     {
-        if(root!=null)
-       {
-        ino(root.left,k,al);
-        al.add(root.data);
-        ino(root.right, k, al);
-       }
-        
+        // if(root.data==x)
+        // {
+        if(root.data>x)
+        {
+            res=root;
+            root=root.left;
+        }
+        //<=
+        else root=root.right;
     }
+    return res;
+}
+
+static Node floor(Node root, int x)
+{
+    Node res =null;
+    while(root!=null)
+    {
+        if(root.data>=x)
+        {
+          
+          root=root.left;
+        }
+        else
+        {  res=root;
+            root=root.right;
+        }
+    }
+    return res;
+}
 }
