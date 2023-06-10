@@ -51,12 +51,19 @@ class Solution {
         // Your code goes here
         // for(int x:update)
         // System.out.print(x+" ");
+       
+       //
+        //  for(int i=0; i<k; i++)
+        //  {
+        //      for(int j= update[i]-1 ;j<n ;j++)
+        //      a[j]++;
+        //  }
         
-        for(int i=0; i<k; i++)
-        a[update[i]-1]++;
+        // for(int i=0; i<k; i++)
+        // a[update[i]-1]++;
         
-          for(int i=1; i<n; i++)
-            a[i]+=a[i-1];
+        //   for(int i=1; i<n; i++)
+        //     a[i]+=a[i-1];
           
     }
     
