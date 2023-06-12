@@ -29,19 +29,32 @@ public class Main {
 
 // } Driver Code Ends
 
-
 class Solution {
     int[] kLargest(int[] arr, int n, int k) {
-        // code here
-       int a[] =  new int[k];
-       //max heap
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         
-        for( int i = 0;i<n;i++)
-        pq.add(arr[i]);  //n
+        // mm2
+        PriorityQueue<Integer> pq = new PriorityQueue<>(); //min heap
+        for(int i=0; i<k; i++)  //k
+        {
+            pq.add(arr[i]); 
+        }
+        for(int i=k; i<n ;i++) // for n-k ele and i am removing in heap of size k => (n-k)logk
+        {
+            if(arr[i] >= pq.peek())
+            {
+                pq.remove();
+                pq.add(arr[i]);
+            }
+        }
+        ArrayList<Integer> al = new ArrayList<>();
+         
+          for( int i=0;i<k;i++)
+            al.add(pq.remove());  //k logk
+        Collections.sort(al, Collections.reverseOrder()); //klogk
         
-        for( int i=0;i<k;i++)
-        a[i] = pq.remove(); // klogn
+        int a[] = new int[k]; // k
+        for(int i=0; i<k; i++)
+        a[i] = al.get(i);
         
         return a;
     }
