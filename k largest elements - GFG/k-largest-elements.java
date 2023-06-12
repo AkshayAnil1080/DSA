@@ -32,46 +32,15 @@ public class Main {
 
 class Solution {
     int[] kLargest(int[] arr, int n, int k) {
-        
-        // mm2
-        PriorityQueue<Integer> pq = new PriorityQueue<>(); //min heap
-        for(int i=0; i<k; i++)
+        // code here
+        Arrays.sort(arr);
+        int ans[] = new int[k];
+        int j=0;
+        for(int i=n-1; i>=n-k; i--)
         {
-            pq.add(arr[i]);
+            ans[j++] = arr[i];
         }
-        for(int i=k; i<n ;i++)
-        {
-            if(arr[i] >= pq.peek())
-            {
-                pq.remove();
-                pq.add(arr[i]);
-            }
-        }
-        ArrayList<Integer> al = new ArrayList<>();
-         
-          for( int i=0;i<k;i++)
-            al.add(pq.remove());
-        Collections.sort(al, Collections.reverseOrder());
+        return ans;
         
-        int a[] = new int[k];
-        for(int i=0; i<k; i++)
-        a[i] = al.get(i);
-        
-        return a;
     }
 }
-
-
-// code here
-        //m1 O(N+klogn)
-        //  int a[] =  new int[k];
-        // PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());/max
-        
-        // for( int i = 0;i<n;i++)
-        // pq.add(arr[i]);
-        
-        // for( int i=0;i<k;i++)
-        // a[i] = pq.remove();
-        
-        // return a;
-        
