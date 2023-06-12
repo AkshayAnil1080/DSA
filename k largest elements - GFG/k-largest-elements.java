@@ -33,14 +33,16 @@ public class Main {
 class Solution {
     int[] kLargest(int[] arr, int n, int k) {
         // code here
-        Arrays.sort(arr);
-        int ans[] = new int[k];
-        int j=0;
-        for(int i=n-1; i>=n-k; i--)
-        {
-            ans[j++] = arr[i];
-        }
-        return ans;
+       int a[] =  new int[k];
+       //max heap
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         
+        for( int i = 0;i<n;i++)
+        pq.add(arr[i]);  //n
+        
+        for( int i=0;i<k;i++)
+        a[i] = pq.remove(); // klogn
+        
+        return a;
     }
 }
