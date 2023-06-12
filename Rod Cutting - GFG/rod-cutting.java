@@ -24,26 +24,41 @@ class RodCutting {
 
 // } Driver Code Ends
 
-
-class Solution{
-    public int cutRod(int price[], int n) {
-        //code here
-       int dp[][] = new int[n+1][n+1];
-        for(int x[] : dp)
-      Arrays.fill(x,-1);
-      return fun(n, price, 0, dp);
+//memo
+// class Solution{
+//     public int cutRod(int price[], int n) {
+//         //code here
+//       int dp[][] = new int[n+1][n+1];
+//         for(int x[] : dp)
+//       Arrays.fill(x,-1);
+//       return fun(n, price, 0, dp);
        
      
-    }
-     int fun(int n, int price[], int ind,   int dp[][])
-    {
-       //cut to be made > rod length  - not poss
-        if(ind+1 >n) return 0;
+//     }
+//      int fun(int n, int price[], int ind,   int dp[][])
+//     {
+//       //cut to be made > rod length  - not poss
+//         if(ind+1 >n) return 0;
         
-        if(dp[ind+1][n]!=-1) return dp[ind+1][n];
-        //not take and take(not incremented the index because can take same price more then once)
-        return dp[ind+1][n] =  Math.max(fun(n, price,ind+1,dp) , price[ind] + 
-        fun(n-ind-1, price, ind,dp));
+//         if(dp[ind+1][n]!=-1) return dp[ind+1][n];
+//         //not take and take(not incremented the index because can take same price more then once)
+//         return dp[ind+1][n] =  Math.max(fun(n, price,ind+1,dp) , price[ind] + 
+//         fun(n-ind-1, price, ind,dp));
         
+//     }
+// }
+
+//tab
+class Solution {
+    public int cutRod(int price[], int n) {
+        int dp[] = new int[n + 1];
+        dp[0] = 0;
+        for (int i = 1; i <= n; i++) {
+            int max_val = Integer.MIN_VALUE;
+            for (int j = 0; j < i; j++)
+                max_val = Math.max(max_val, price[j] + dp[i - j - 1]);
+            dp[i] = max_val;
+        }
+        return dp[n];
     }
 }
