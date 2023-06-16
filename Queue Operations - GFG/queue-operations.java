@@ -17,6 +17,7 @@ class Geeks{
         
         // Your code here
         q.add(k);
+        
     }
     
     // Function to find frequency of an element
@@ -33,11 +34,10 @@ class Geeks{
             if(curr==k)
             ans++;
         }
-         while(!c_q.isEmpty())
+        while(!c_q.isEmpty())
          q.add(c_q.poll());
         
         return ans;
-        
         
     }
     
