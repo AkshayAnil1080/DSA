@@ -26,35 +26,15 @@ class GFG{
 class Solution {
     public static int distributeTicket(int N,int K)
     {
-        ArrayDeque<Integer>ad = new ArrayDeque<>();
-        for(int i=1; i<=N; i++)
+         int st=1; int end=N;
+        while(st<end)
         {
-            ad.add(i);
+            int time=K;
+            while(st<end && time-- >0) st++;
+            time=K;
+            while(st<end && time-- >0) end--;
+            
         }
-        int flag=0;
-         int curr=0;
-        while(!ad.isEmpty())
-        {
-           
-            int time=0;
-            if(flag==0)
-            {    while(!ad.isEmpty() && time<K)
-                   {
-                       curr= ad.pollFirst(); time++;
-                   }
-            }
-
-            else
-            {   while(!ad.isEmpty() && time<K)
-                  {
-                      curr= ad.pollLast(); time++;
-                  }
-            }
-
-           flag  = flag==0? 1:0;
-        }
-        
-        
-         return curr;
+        return st;
     }
 }
