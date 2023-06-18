@@ -49,10 +49,14 @@ class Solution
     static void arrange(long arr[], int n)
     {
         // your code here
-        long temp[] = new long[n];
-        for(int i=0;i<n;i++)
-            temp[i] = arr[(int)arr[i]];
-        for(int i=0;i<n;i++)
-            arr[i] = temp[i];
+       for(int i = 0; i <n ;i ++)
+        {
+          
+            arr[i] += (arr[(int)arr[i]]%n)*n;    
+            // for the next iteration , we want the old values again for computation of arr[i],
+            // and for the retireval of old value we use %n as shown above
+        }
+         for(int i = 0; i <n ;i ++)
+         arr[i] /= n;
     }
 }
