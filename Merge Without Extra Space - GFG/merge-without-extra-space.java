@@ -50,19 +50,25 @@ class Solution
     public static void merge(long arr1[], long arr2[], int n, int m) 
     {
         long arr3[] = new long[n+m];
-        int k=0;
-        for(long x : arr1)
-        arr3[k++] =x;
-        for(long x : arr2)
-        arr3[k++]=x;
+        int i = 0, j = 0, k = 0;
+    while (i<n && j <m)
+    {
+        if (arr1[i] < arr2[j])
+            arr3[k++] = arr1[i++];
+        else
+            arr3[k++] = arr2[j++];
+    }
+ 
+    while (i < n)
+        arr3[k++] = arr1[i++];
+ 
+    while (j < m)
+        arr3[k++] = arr2[j++];
         
-        Arrays.sort(arr3);
-        for(int i=0; i<n; i++)
+        for( i=0; i<n; i++)
         arr1[i] = arr3[i];
         
-        for(int i=0; i<m; i++)
-        {
-            arr2[i] = arr3[n+i];
-        }
+        for( i=0; i<m; i++)
+        arr2[i] = arr3[n+i];
     }
 }
