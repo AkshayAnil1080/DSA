@@ -49,26 +49,23 @@ class Solution
     //Function to merge the arrays.
     public static void merge(long arr1[], long arr2[], int n, int m) 
     {
-        long arr3[] = new long[n+m];
-        int i = 0, j = 0, k = 0;
-    while (i<n && j <m)
-    {
-        if (arr1[i] < arr2[j])
-            arr3[k++] = arr1[i++];
+          int i = n-1;
+        int j=0;
+        while(i>=0 && j<m)
+        {
+        if(arr1[i] <=arr2[j])
+        break;
+        
         else
-            arr3[k++] = arr2[j++];
-    }
- 
-    while (i < n)
-        arr3[k++] = arr1[i++];
- 
-    while (j < m)
-        arr3[k++] = arr2[j++];
-        
-        for( i=0; i<n; i++)
-        arr1[i] = arr3[i];
-        
-        for( i=0; i<m; i++)
-        arr2[i] = arr3[n+i];
+        {
+            long temp = arr1[i];
+            arr1[i] =arr2[j];
+            arr2[j] =temp;
+            i--; j++;
+        }
+       
+        }
+         Arrays.sort(arr1);
+        Arrays.sort(arr2);
     }
 }
