@@ -7,28 +7,47 @@ import java.util.*;
 class Solution
 {
     //Function to find the smallest positive number missing from the array.
-    static int missingNumber(int arr[], int n)
+    static int missingNumber(int A[], int n)
     {
-        // Your code here
-       // Your code here
-        boolean vis[] =  new boolean[n+1];
-        
-        for( int i = 0; i <n; i ++)
+       int j = 0;
+        for(int i = 0; i < n; i++)
         {
-            if(arr[i]>0 && arr[i]<=n)
-            {
-                vis[arr[i]]  = true;
+           if (A[i] <= 0)  
+           {
+                int t = A[i];
+               A[i] = A[j];
+               A[j] = t;
+               j++;  
+           }
+        } 
+        // arr2 to store only the +ve integer.
+         int N= n-j;
+        int arr2[] = new int[N];
+        int k=0;
+        for(int i=j;i<n;i++)
+        {
+            arr2[k++] = A[i];
+        }
+        // for(int x: arr2)
+        // System.out.println(x+" ");
+        
+       // final logic
+       for(int i = 0; i < N; ++ i) {
+      
+        //ignoringm num > N for OOB condition 
+           if(Math.abs(arr2[i]) -1 < N && arr2[Math.abs(arr2[i])-1]>0)
+           {
+               arr2[Math.abs(arr2[i])-1] = -arr2[Math.abs(arr2[i])-1];
+           }
+                
+       }
+       for (int i = 0; i < N; ++i) {
+            if (arr2[i]>0) {
+                return i + 1;
             }
         }
-        
-        for( int i = 1 ; i<=n ;i++)
-        {
-            if(!vis[i])
-            return i;
-            
-        }
-        
-        return n+1; 
+
+        return N + 1;
     }
 }
 
