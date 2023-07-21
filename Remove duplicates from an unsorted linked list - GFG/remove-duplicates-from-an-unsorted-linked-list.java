@@ -96,24 +96,24 @@ class Solution
     //Function to remove duplicates from unsorted linked list.
     public Node removeDuplicates(Node head) 
     {
-         // Your code here
-         HashSet<Integer> set = new HashSet<>();
-        Node curr=head; Node prev=null;
-        while(curr!=null)
-        {
-            int val = curr.data;
-            if(set.contains(val))
-            {
-                prev.next=curr.next;
-                curr=prev.next;
-            }
-            else
-            {
-                set.add(val);
-                prev=curr;  curr=curr.next;
-            }
-            
-        }
+          HashSet<Integer> hs = new HashSet<>(); 
+         Node curr=head;
+         Node prev=null;
+         
+         while(curr!=null)
+         {
+             int val = curr.data;
+             if (hs.contains(val))
+                     prev.next=curr.next;
+                    
+             else{
+                 hs.add(val);
+                 prev=curr;
+                 }
+                 
+             curr=curr.next;
+         }
+       
         return head;
     }
 }
