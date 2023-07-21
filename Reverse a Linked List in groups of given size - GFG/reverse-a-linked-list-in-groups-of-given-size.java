@@ -78,26 +78,61 @@ class Node
 
 */
 
+// class Solution
+// {
+//     public static Node reverse(Node head, int k)
+//     {
+//         //Your code here
+//         Node curr=head, next=null, prev=null;
+//         int count=0;
+//         while(curr!=null && count<k)
+//         {
+//             next=curr.next; 
+//             curr.next=prev; prev=curr; curr = next; 
+            
+//             count++;
+//         }
+//         if(next!=null)
+//         {
+//             Node new_head = reverse(next,k);
+//             head.next = new_head;
+//         }
+//         return prev;
+//     }
+// }
+
+
 class Solution
 {
     public static Node reverse(Node head, int k)
     {
         //Your code here
-        Node curr=head, next=null, prev=null;
-        int count=0;
-        while(curr!=null && count<k)
+        Node curr=head, prevFirst=null; 
+        //strore last node of reversed grp
+        boolean isFirst=true;
+        
+        
+        while(curr!=null)
         {
-            next=curr.next; 
-            curr.next=prev; prev=curr; curr = next; 
+            Node first=curr;// to store the starting node of each group, 
+            //which will also be the last node after getting reversed.
+            Node prev=null; int count=0;
+             while(curr!=null && count<k){
+        
+                Node next=curr.next; 
+                curr.next=prev; prev=curr; curr = next; 
+                
+                count++;
+            }  
+            if(isFirst ){
+                head = prev; isFirst=false;
+            }
+            else
+            prevFirst.next=prev; // pointing to new head of current reversed grp
             
-            count++;
+            prevFirst=first; 
         }
-        if(next!=null)
-        {
-            Node new_head = reverse(next,k);
-            head.next = new_head;
-        }
-        return prev;
+        return head;
     }
 }
 
