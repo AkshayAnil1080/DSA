@@ -83,8 +83,6 @@ class Solution
     //Function to sort a linked list of 0s, 1s and 2s.
     static Node segregate(Node head)
     {
-        // add your code here
-        // store the cnt of 0,1,2
         int cnt[]=  new int[3];
         for(Node curr=head; curr!=null; curr=curr.next)
         {
