@@ -37,6 +37,50 @@ struct Node
 }; */
 
 // Should return  right view of tree
+// class Solution
+// {
+//     public:
+//     //Function to return list containing elements of right view of binary tree.
+//     vector<int> rightView(Node *root)
+//     {
+//             vector<int> result;
+//         if (root == NULL) {
+//             return result;
+//         }
+
+//         // Declare a queue and add the root node.
+//         queue<Node*> qu;
+//         qu.push(root);
+
+//         // While the queue is not empty.
+//         while (!qu.empty()) {
+//             // Number of nodes present at the current level.
+//             int len = qu.size();
+
+//             for (int i = 0; i < len; i++) {
+//                 Node* node = qu.front();
+//                 qu.pop();
+
+//                 // Add the last node of each level to the result.
+//                 if (i == len - 1) {
+//                     result.push_back(node->data);
+//                 }
+
+//                 if (node->left != NULL) {
+//                     qu.push(node->left);
+//                 }
+
+//                 if (node->right != NULL) {
+//                     qu.push(node->right);
+//                 }
+//             }
+//         }
+//         return result;
+//     }
+// };
+
+
+
 class Solution
 {
     public:
