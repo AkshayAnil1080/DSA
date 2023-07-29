@@ -122,32 +122,99 @@ struct Node {
 */
 // your task is to complete the Function
 // Function should return median of the BST
- void inorder(std::vector<int>& al, Node* root) {
-        if (root == nullptr)
-            return;
+//  void inorder(std::vector<int>& al, Node* root) {
+//         if (root == nullptr)
+//             return;
 
-        inorder(al, root->left);
-        al.push_back(root->data);
-        inorder(al, root->right);
-    }
+//         inorder(al, root->left);
+//         al.push_back(root->data);
+//         inorder(al, root->right);
+//     }
     
+// float findMedian(struct Node *root)
+// {
+//       if (root == nullptr)
+//             return 0;
+
+//         std::vector<int> al;
+//         inorder(al, root);
+//         int n = al.size();
+
+//         if (n % 2 != 0) {
+//             return al[(n + 1) / 2 - 1];
+//         } else {
+//             int mid1 = al[n / 2 - 1];
+//             int mid2 = al[n / 2];
+
+//             return static_cast<float>(mid1 + mid2) / 2;
+//         }
+// }
+
+int morris(Node* curr) {
+        int cnt = 0;
+        while (curr != nullptr) {
+            if (curr->left == nullptr) {
+                cnt++;
+                curr = curr->right;
+            }
+            else {
+                Node* prev = curr->left;
+                while (prev->right != nullptr && prev->right != curr)
+                    prev = prev->right;
+
+                if (prev->right == nullptr) {
+                    prev->right = curr;
+                    curr = curr->left;
+                }
+                else {
+                    prev->right = nullptr;
+                    cnt++;
+                    curr = curr->right;
+                }
+            }
+        }
+        return cnt;
+    }
 float findMedian(struct Node *root)
 {
-      if (root == nullptr)
-            return 0;
+    int cnt = morris(root);
+        Node* curr = root;
+        Node* preptr = nullptr;
+        Node* prev = nullptr;
+        int currcnt = 0;
 
-        std::vector<int> al;
-        inorder(al, root);
-        int n = al.size();
+        while (curr != nullptr) {
+            if (curr->left == nullptr) {
+                currcnt++;
+                if (cnt % 2 != 0 && currcnt == (cnt + 1) / 2)
+                    return static_cast<float>(curr->data);
+                else if (cnt % 2 == 0 && currcnt == (cnt / 2) + 1)
+                    return static_cast<float>(preptr->data + curr->data) / 2.0f;
+                preptr = curr;
+                curr = curr->right;
+            }
+            else {
+                prev = curr->left;
+                while (prev->right != nullptr && prev->right != curr)
+                    prev = prev->right;
 
-        if (n % 2 != 0) {
-            return al[(n + 1) / 2 - 1];
-        } else {
-            int mid1 = al[n / 2 - 1];
-            int mid2 = al[n / 2];
-
-            return static_cast<float>(mid1 + mid2) / 2;
+                if (prev->right == nullptr) {
+                    prev->right = curr;
+                    curr = curr->left;
+                }
+                else {
+                    prev->right = nullptr;
+                    currcnt++;
+                    if (cnt % 2 != 0 && currcnt == (cnt + 1) / 2)
+                        return static_cast<float>(curr->data);
+                    else if (cnt % 2 == 0 && currcnt == (cnt / 2) + 1)
+                        return static_cast<float>(preptr->data + curr->data) / 2.0f;
+                    preptr = curr;
+                    curr = curr->right;
+                }
+            }
         }
+        return -1.0f;
 }
 
 
