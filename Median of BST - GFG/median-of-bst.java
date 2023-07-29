@@ -112,32 +112,81 @@ class GfG {
 
 //User function Template for Java
 
+// class Tree
+// {
+//     public static float findMedian(Node root)
+//     {
+//         if (root == null)
+//             return 0;
+
+//         List<Integer> al = new ArrayList<>();
+//         inorder(al, root);
+//         int n = al.size();
+
+//         if (n % 2 != 0) {
+//             return al.get((n + 1) / 2 - 1);
+//         } else {
+//             int mid1 = al.get(n / 2 - 1);
+//             int mid2 = al.get(n / 2);
+
+//             return  ((float)(mid1 + mid2)/2);
+//     }
+//     }
+//     static void inorder(List<Integer> al, Node root) {
+//         if (root == null)
+//             return;
+
+//         inorder(al, root.left);
+//         al.add(root.data);
+//         inorder(al, root.right);
+//     }
+// }
+
 class Tree
 {
     public static float findMedian(Node root)
     {
-        if (root == null)
-            return 0;
-
-        List<Integer> al = new ArrayList<>();
-        inorder(al, root);
-        int n = al.size();
-
-        if (n % 2 != 0) {
-            return al.get((n + 1) / 2 - 1);
-        } else {
-            int mid1 = al.get(n / 2 - 1);
-            int mid2 = al.get(n / 2);
-
-            return  ((float)(mid1 + mid2)/2);
+        // code here.
+        int x=0,y=0;
+        int n = countNodes(root);
+        if(n%2!=0){
+             int ans[] = new int[1];
+            ans[0] = 0;
+             find(root, 1+ n/2, new int[]{0}, ans);
+             return (ans[0]);
+            
+        }
+        else
+        {
+        int ans1[] = new int[1];
+        int ans2[] = new int[1];
+            find(root, n/2, new int[]{0}, ans1);
+              find(root, 1 + n/2, new int[]{0},ans2);
+        return (ans1[0]+ans2[0]) / 2.0f;
+        }
     }
+   static int countNodes(Node n)
+    {
+        // this function returns number of nodes in tree
+        if(n==null) return 0;
+        return 1 + countNodes(n.left) + countNodes(n.right);
     }
-    static void inorder(List<Integer> al, Node root) {
-        if (root == null)
+    // static count=0;
+    static void find(Node node, int k, int[] count, int arr[])
+    {
+    if (node == null)
             return;
 
-        inorder(al, root.left);
-        al.add(root.data);
-        inorder(al, root.right);
+     find(node.left, k, count,arr);
+
+        count[0]++;
+        if (count[0] == k) {
+            arr[0] = node.data;
+            return;
+        }
+
+       find(node.right, k, count, arr);
+
     }
+    
 }
