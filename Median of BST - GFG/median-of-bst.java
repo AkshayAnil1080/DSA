@@ -142,51 +142,160 @@ class GfG {
 //     }
 // }
 
+// class Tree
+// {
+//     public static float findMedian(Node root)
+//     {
+//         // code here.
+//         int x=0,y=0;
+//         int n = countNodes(root);
+//         if(n%2!=0){
+//              int ans[] = new int[1];
+//             ans[0] = 0;
+//              find(root, 1+ n/2, new int[]{0}, ans);
+//              return (ans[0]);
+            
+//         }
+//         else
+//         {
+//         int ans1[] = new int[1];
+//         int ans2[] = new int[1];
+//             find(root, n/2, new int[]{0}, ans1);
+//               find(root, 1 + n/2, new int[]{0},ans2);
+//         return (ans1[0]+ans2[0]) / 2.0f;
+//         }
+//     }
+//   static int countNodes(Node n)
+//     {
+//         // this function returns number of nodes in tree
+//         if(n==null) return 0;
+//         return 1 + countNodes(n.left) + countNodes(n.right);
+//     }
+//     // static count=0;
+//     static void find(Node node, int k, int[] count, int arr[])
+//     {
+//     if (node == null)
+//             return;
+
+//      find(node.left, k, count,arr);
+
+//         count[0]++;
+//         if (count[0] == k) {
+//             arr[0] = node.data;
+//             return;
+//         }
+
+//       find(node.right, k, count, arr);
+
+//     }
+    
+// }
+
+
 class Tree
 {
     public static float findMedian(Node root)
     {
-        // code here.
-        int x=0,y=0;
-        int n = countNodes(root);
-        if(n%2!=0){
-             int ans[] = new int[1];
-            ans[0] = 0;
-             find(root, 1+ n/2, new int[]{0}, ans);
-             return (ans[0]);
-            
-        }
-        else
+        int cnt =  morris(root);
+         Node curr = root, preptr = null, prev = null;
+        int currcnt=0;
+        while(curr!=null)
         {
-        int ans1[] = new int[1];
-        int ans2[] = new int[1];
-            find(root, n/2, new int[]{0}, ans1);
-              find(root, 1 + n/2, new int[]{0},ans2);
-        return (ans1[0]+ans2[0]) / 2.0f;
+            if(curr.left==null)
+            {
+                // if(k==1) return curr;
+                // k--;
+                //odd
+                // Odd case
+                  currcnt++;
+                if (cnt % 2 != 0 && currcnt == (cnt + 1) / 2)
+                    return curr.data;
+                    
+                    //even case
+                 else if (cnt % 2 == 0 && currcnt == (cnt / 2) + 1)
+                    return (float) (preptr.data + curr.data) / 2;
+                    
+                    // Update prev for even no. of nodes
+                preptr = curr;
+                
+                curr=curr.right;
+            }
+            
+           
+            else
+            {
+                //move as right as poss
+                 prev = curr.left;
+                while(prev.right!=null && prev.right!=curr)
+                prev= prev.right;
+                
+                if(prev.right==null)
+                {
+                    prev.right=curr; // make thread
+                    curr=curr.left; //do the same for remaining lst
+                    
+                }
+                else //prev.right!=null // thread alreadt there
+                {
+                    prev.right=null;
+                    //access the node since inorder
+                    // if(k==1) return curr;
+                    //  k--; 
+                    // cnt++;
+                    currcnt++;
+                if (cnt % 2 != 0 && currcnt == (cnt + 1) / 2)
+                    return curr.data;
+                    
+                    //even case
+                 else if (cnt % 2 == 0 && currcnt == (cnt / 2) + 1)
+                    return (float) (preptr.data + curr.data) / 2;
+                    
+                      preptr = curr;
+                      
+                    curr= curr.right;
+                }
+            }
         }
+          return -1;
     }
-   static int countNodes(Node n)
+     static int morris(Node curr)
     {
-        // this function returns number of nodes in tree
-        if(n==null) return 0;
-        return 1 + countNodes(n.left) + countNodes(n.right);
-    }
-    // static count=0;
-    static void find(Node node, int k, int[] count, int arr[])
-    {
-    if (node == null)
-            return;
-
-     find(node.left, k, count,arr);
-
-        count[0]++;
-        if (count[0] == k) {
-            arr[0] = node.data;
-            return;
+        int cnt=0;
+         while(curr!=null)
+        {
+            if(curr.left==null)
+            {
+                // if(k==1) return curr;
+                // k--;
+                cnt++;
+                curr=curr.right;
+            }
+            
+           
+            else
+            {
+                //move as right as poss
+                 Node prev = curr.left;
+                while(prev.right!=null && prev.right!=curr)
+                prev= prev.right;
+                
+                if(prev.right==null)
+                {
+                    prev.right=curr; // make thread
+                    curr=curr.left; //do the same for remaining lst
+                    
+                }
+                else //prev.right!=null // thread alreadt there
+                {
+                    prev.right=null;
+                    //access the node since inorder
+                    // if(k==1) return curr;
+                    //  k--; 
+                    cnt++;
+                    curr= curr.right;
+                }
+            }
         }
-
-       find(node.right, k, count, arr);
-
+        return cnt;
     }
-    
 }
