@@ -123,27 +123,51 @@ class Node{
 	}
 }
 */
+// class Solution
+// {
+//     // returns the inorder successor of the Node x in BST (rooted at 'root')
+// 	public Node inorderSuccessor(Node root,Node x)
+//          {
+//           //add code here.
+//           ArrayList<Node> al = new ArrayList<>();
+//           in(al, root);
+//           for(int i=0; i<al.size(); i++)
+//           {
+//               if(al.get(i)==x && i+1<al.size())
+//                   return al.get(i+1);
+//           }
+//           return null;
+//          }
+//         void in(ArrayList<Node> al, Node root)
+//         {
+//             if(root==null) return;
+//             in(al,root.left);
+//             al.add(root);
+//             in(al,root.right);
+//         }
+        
+// }
 class Solution
 {
     // returns the inorder successor of the Node x in BST (rooted at 'root')
 	public Node inorderSuccessor(Node root,Node x)
          {
-           //add code here.
-          ArrayList<Node> al = new ArrayList<>();
-          in(al, root);
-          for(int i=0; i<al.size(); i++)
+          //add code here.
+          Node ans=null;
+          while(root!=null)
           {
-              if(al.get(i)==x && i+1<al.size())
-                   return al.get(i+1);
+              if(root.data >x.data)
+              {
+                  ans = root;
+                  root= root.left;
+              }
+              
+              else //(root.data <=x.data)
+                  root=root.right;
+
           }
-          return null;
+          return ans;
          }
-        void in(ArrayList<Node> al, Node root)
-        {
-            if(root==null) return;
-            in(al,root.left);
-            al.add(root);
-            in(al,root.right);
-        }
-        
 }
+
+
