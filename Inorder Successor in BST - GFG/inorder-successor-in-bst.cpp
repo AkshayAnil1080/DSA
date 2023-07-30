@@ -107,34 +107,56 @@ struct Node {
 };
 */
 
+// class Solution{
+//   public:
+//     // returns the inorder successor of the Node x in BST (rooted at 'root')
+//     Node * inOrderSuccessor(Node *root, Node *x)
+//     {
+//          vector<Node*> nodes;
+//         inorderTraversal(nodes, root);
+
+//         for (size_t i = 0; i < nodes.size(); i++)
+//         {
+//             if (nodes[i] == x && i + 1 < nodes.size())
+//                 return nodes[i + 1];
+//         }
+
+//         return nullptr;
+//     }
+
+
+//     void inorderTraversal(std::vector<Node*>& nodes, Node* root)
+//     {
+//         if (root == nullptr)
+//             return;
+
+//         inorderTraversal(nodes, root->left);
+//         nodes.push_back(root);
+//         inorderTraversal(nodes, root->right);
+//     }
+
+// };
+
+
 class Solution{
   public:
     // returns the inorder successor of the Node x in BST (rooted at 'root')
     Node * inOrderSuccessor(Node *root, Node *x)
-    {
-         vector<Node*> nodes;
-        inorderTraversal(nodes, root);
-
-        for (size_t i = 0; i < nodes.size(); i++)
+    { Node* ans = nullptr;
+        while (root != nullptr)
         {
-            if (nodes[i] == x && i + 1 < nodes.size())
-                return nodes[i + 1];
+            if (root->data > x->data)
+            {
+                ans = root;
+                root = root->left;
+            }
+            else
+            {
+                root = root->right;
+            }
         }
-
-        return nullptr;
+        return ans;
     }
-
-
-    void inorderTraversal(std::vector<Node*>& nodes, Node* root)
-    {
-        if (root == nullptr)
-            return;
-
-        inorderTraversal(nodes, root->left);
-        nodes.push_back(root);
-        inorderTraversal(nodes, root->right);
-    }
-
 };
 
 //{ Driver Code Starts.
