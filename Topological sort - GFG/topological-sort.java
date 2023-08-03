@@ -110,7 +110,9 @@ class Solution
        int k=0;
         
 	    while(!st.isEmpty())
-	      {  ans[k++] = st.pop();
+	      {  
+	       //   System.out.println(st.peek()); // 3 2 1 0
+	          ans[k++] = st.pop();
 	      }
 
 	    return ans;
@@ -126,5 +128,4 @@ class Solution
 	   }
 	   st.push(u);
 	}
-    
 }
