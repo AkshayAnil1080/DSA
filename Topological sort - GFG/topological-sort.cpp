@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 	public:
-	//Function to return list containing vertices in Topological order.
+	//Function to return list containing vertices in Topological order. 
 	void dfs( vector<int> adj[], int u, stack<int>& st, vector<bool>& vis) {
     vis[u] = true;
     for (int nei : adj[u]) {
@@ -31,9 +31,8 @@ class Solution
         st.pop();
     }
 
-    return ans;
+    return ans; // code here
 	}
-
 };
 
 //{ Driver Code Starts.
