@@ -15,7 +15,7 @@ class Main {
             int edg = Integer.parseInt(st[0]);
             int nov = Integer.parseInt(st[1]);
 
-            for (int i = 0; i < nov + 1; i++)
+            for (int i = 0; i < nov; i++)
                 list.add(i, new ArrayList<Integer>());
 
             int p = 0;
@@ -57,40 +57,74 @@ class Main {
 
 /*Complete the function below*/
 
-
+// class Solution
+// {
+//     //Function to return list containing vertices in Topological order. 
+//     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
+//     {
+//         // add your code here
+//         int ans[]= new int[V];
+//         int ind=0;
+//         //1, 
+//         Queue<Integer> q = new LinkedList<>();
+//         int indegree[] = new int[V];
+//         for( int i=0; i<V;i++)
+//         {
+//             for(int x : adj.get(i))
+//             indegree[x]++;
+//         }
+//         //2. 
+//         for( int i=0;i<V;i++)
+//         {
+//             if(indegree[i]==0)
+//             q.add(i);
+//         }
+        
+//         //3
+//         while(!q.isEmpty())
+//         {
+//             int u =q.poll();
+//             ans[ind++]=u;
+            
+//             for( int v:  adj.get(u))
+//             if(--indegree[v]==0)
+//             q.add(v);
+//         }
+//         return ans;
+//     }
+// }
 class Solution
 {
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
-        // add your code here
-        int ans[]= new int[V];
-        int ind=0;
-        //1, 
-        Queue<Integer> q = new LinkedList<>();
-        int indegree[] = new int[V];
-        for( int i=0; i<V;i++)
-        {
-            for(int x : adj.get(i))
-            indegree[x]++;
-        }
-        //2. 
-        for( int i=0;i<V;i++)
-        {
-            if(indegree[i]==0)
-            q.add(i);
-        }
+        boolean vis[] = new boolean[V];
+	    
+	    Stack<Integer> st = new Stack<>();
+	    for(int u=0; u<V; u++)
+	    {
+	        if(!vis[u])
+	        dfs(adj, u,st, vis);
+	    }
+	    int ans[] = new int[V];
+       int k=0;
         
-        //3
-        while(!q.isEmpty())
-        {
-            int u =q.poll();
-            ans[ind++]=u;
-            
-            for( int v:  adj.get(u))
-            if(--indegree[v]==0)
-            q.add(v);
-        }
-        return ans;
-    }
+	    while(!st.isEmpty())
+	      {  ans[k++] = st.pop();
+	      }
+
+	    return ans;
+	}
+	
+	static void dfs(ArrayList<ArrayList<Integer>> adj,  int u, Stack st, boolean vis[])
+	{
+	   vis[u] = true;
+	   for(int nei : adj.get(u))
+	   {
+	       if(!vis[nei])
+	       dfs(adj,nei, st ,vis);
+	   }
+	   st.push(u);
+	}
+    
 }
