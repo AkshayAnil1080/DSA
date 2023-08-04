@@ -8,20 +8,48 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
+// class Solution{
+// public:
+//     void Reverse(stack<int> &s){
+//         queue<int> q;
+//     while (!s.empty()) {
+//         q.push(s.top());
+//         s.pop();
+//     }
+//     while (!q.empty()) {
+//         s.push(q.front());
+//         q.pop();
+//     }
+//     }
+// };
+
+
+
 class Solution{
 public:
-    void Reverse(stack<int> &s){
-        queue<int> q;
-    while (!s.empty()) {
-        q.push(s.top());
+
+void push_back(stack<int>& s, int x) {
+    if (s.empty()) 
+        s.push(x);
+     else {
+        int y = s.top();
         s.pop();
+        push_back(s, x);
+        s.push(y);
     }
-    while (!q.empty()) {
-        s.push(q.front());
-        q.pop();
-    }
+}
+
+
+    void Reverse(stack<int> &s){
+        if (!s.empty()) {
+        int x = s.top();
+        s.pop();
+        Reverse(s);
+        push_back(s, x);
+        }
     }
 };
+
 
 //{ Driver Code Starts.
 
