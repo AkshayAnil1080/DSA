@@ -8,7 +8,7 @@ class GFG {
             new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(read.readLine());
         while (t-- > 0) {
-            long n = Integer.parseInt(read.readLine());
+            int n = Integer.parseInt(read.readLine());
             Solution ob = new Solution();
 
             System.out.println(ob.nthFibonacci(n));
@@ -22,7 +22,7 @@ class GFG {
 
 //User function Template for Java
 class Solution {
-    static long mod = 1000000007;
+   static long mod = 1000000007;
    
     static long nthFibonacci(long n){
         // code here
@@ -36,5 +36,3 @@ class Solution {
       return c%mod;
     }    
 }
-// TC: O(n)
-// SC:O(1)
