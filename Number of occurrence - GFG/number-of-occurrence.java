@@ -34,35 +34,35 @@ public class Main {
 //User function Template for Java
 
 
-class Solution {
-    int count(int[] arr, int n, int x) {
-        // code here
-        int cnt=0;
-        for(int y :arr)
-        if(y==x)
-        cnt++;
-        
-        return cnt;
-    }
-}
-
-
-
 // class Solution {
 //     int count(int[] arr, int n, int x) {
 //         // code here
-//         HashMap<Integer, Integer>  mp = new HashMap<>();
 //         int cnt=0;
-        
-//         for(int i=0; i<n; i++)
-//         mp.put(arr[i], mp.getOrDefault(arr[i],0)+1);
-        
-//         for(Map.Entry<Integer, Integer> z : mp.entrySet())
-//         {
-//             if(z.getKey()==x)
-//             cnt = z.getValue();
-//         }
+//         for(int y :arr)
+//         if(y==x)
+//         cnt++;
         
 //         return cnt;
 //     }
 // }
+
+
+
+class Solution {
+    int count(int[] arr, int n, int x) {
+        // code here
+        HashMap<Integer, Integer>  mp = new HashMap<>();
+        int cnt=0;
+        
+        for(int i=0; i<n; i++)
+        mp.put(arr[i], mp.getOrDefault(arr[i],0)+1);
+        
+        for(Map.Entry<Integer, Integer> z : mp.entrySet())
+        {
+            if(z.getKey()==x)
+            cnt = z.getValue();
+        }
+        
+        return cnt;
+    }
+}
