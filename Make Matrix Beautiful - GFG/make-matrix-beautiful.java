@@ -87,8 +87,11 @@ class Solution {
         int res=0;
         for(int i=0; i<n; i++)
         {
-            r[i] =  max - r[i];
-            res += r[i];
+            // r[i] =  max - r[i];
+            // res += r[i];
+            //
+             c[i] =  max - c[i];
+            res += c[i];
         }
         return res;
     }
