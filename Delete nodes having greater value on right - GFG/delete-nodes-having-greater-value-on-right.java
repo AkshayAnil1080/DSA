@@ -78,29 +78,72 @@ class Node {
   }
 }
 */
+// class Solution
+// {
+//     Node compute(Node head)
+//     {
+     
+//         if(head.next==null)return head;
+        
+//         int max=Integer.MAX_VALUE;
+//         Node new_n=new Node(max);
+        
+//         Stack<Node> stack=new Stack<Node>();
+//         stack.push(new_n);
+//         while(head!=null)
+//         {
+//             while(stack.peek().data<head.data)
+//             stack.pop();
+            
+//             stack.peek().next=head;
+//             stack.push(head);
+//             head=head.next;
+//         }
+//         return new_n.next;
+//     }
+ 
+// }
 class Solution
 {
     Node compute(Node head)
     {
-     
-        if(head.next==null)return head;
-        
-        int max=Integer.MAX_VALUE;
-        Node new_n=new Node(max);
-        
-        Stack<Node> stack=new Stack<Node>();
-        stack.push(new_n);
-        while(head!=null)
-        {
-            while(stack.peek().data<head.data)
-            stack.pop();
+        // your code here
+        Node new_head =  rev(head);
+        Node curr = new_head;
+        Node temp=null;
+        Node maxNode = curr;
+        while(curr.next!=null){
             
-            stack.peek().next=head;
-            stack.push(head);
-            head=head.next;
+          
+          if(curr.next.data < maxNode.data )
+            {
+                temp=curr.next;
+                curr.next = temp.next;
+            }
+            else
+            {
+                curr=curr.next;
+                maxNode=curr;
+            }
         }
-        return new_n.next;
+        
+        return rev(new_head);
+        
     }
- 
+    Node rev(Node head)
+    {
+        Node prev=null, next=null; Node curr=head;
+        
+        while(curr!=null)
+        {
+            next= curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
 }
+
+
   
