@@ -114,27 +114,72 @@ class Node
     }
 }
 */
-class Solution
+// class Solution
+// {
+//     // return the Kth largest element in the given BST rooted at 'root'
+//     public int kthLargest(Node root,int k)
+//     {
+//          ArrayList<Integer> al = new ArrayList<>();
+//         inorder(root, al);
+        
+//         if(k>al.size())
+//         return -1;
+        
+//         return al.get(al.size()-k);
+        
+//     }
+//     void inorder(Node root,  ArrayList<Integer> al)
+//     {
+//         if(root!=null)
+//         {
+//             inorder(root.left, al);
+//             al.add(root.data);
+//             inorder(root.right, al);
+//         }
+//     }
+// }
+
+
+  class Solution
 {
     // return the Kth largest element in the given BST rooted at 'root'
-    public int kthLargest(Node root,int k)
+    public int kthLargest(Node root,int K)
     {
-         ArrayList<Integer> al = new ArrayList<>();
-        inorder(root, al);
-        
-        if(k>al.size())
-        return -1;
-        
-        return al.get(al.size()-k);
-        
+        Node ans = morris(root, K);
+        return (ans != null) ? ans.data : -1;
     }
-    void inorder(Node root,  ArrayList<Integer> al)
-    {
-        if(root!=null)
-        {
-            inorder(root.left, al);
-            al.add(root.data);
-            inorder(root.right, al);
+
+    Node morris(Node curr, int k) {
+        while (curr != null) {
+            if (curr.right == null) { //just move in left
+                // Print root node
+                if (k == 1)
+                    return curr;
+                k--;
+                curr = curr.left;
+            } else {
+                // findind inorder successor
+                 Node prev = curr.right;
+                while(prev.left!= null && prev.left!=curr)
+                prev = prev.left;
+                
+                
+               
+                if (prev.left == null) {
+                    prev.left = curr; //making thread and now move right
+                    curr = curr.right;
+                } else {
+                    prev.left = null; // remove it, as thread already present
+                    if (k == 1)
+                        return curr;
+                    k--;
+                    curr = curr.left;
+                }
+            }
         }
+        return null;
     }
+
 }
+
+
