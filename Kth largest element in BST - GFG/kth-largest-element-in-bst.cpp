@@ -94,28 +94,68 @@ struct Node {
 */
 
 // return the Kth largest element in the given BST rooted at 'root'
+// class Solution
+// {
+//     public:
+//     int kthLargest(Node *root, int k)
+//     {
+//         vector<int> elements;
+//         inorder(root, elements);
+
+//         if (k > elements.size())
+//             return -1;
+
+//         return elements[elements.size() - k];
+//     }
+
+//     void inorder(Node* root, vector<int>& elements) {
+//         if (root != nullptr) {
+//             inorder(root->left, elements);
+//             elements.push_back(root->data);
+//             inorder(root->right, elements);
+//         }
+//     }
+// };
+
 class Solution
 {
     public:
-    int kthLargest(Node *root, int k)
+    int kthLargest(Node *root, int K)
     {
-        vector<int> elements;
-        inorder(root, elements);
-
-        if (k > elements.size())
-            return -1;
-
-        return elements[elements.size() - k];
+       Node* ans = morris(root, K);
+        return (ans != nullptr) ? ans->data : -1;
     }
 
-    void inorder(Node* root, vector<int>& elements) {
-        if (root != nullptr) {
-            inorder(root->left, elements);
-            elements.push_back(root->data);
-            inorder(root->right, elements);
+    Node* morris(Node* curr, int k) {
+        while (curr != nullptr) {
+            if (curr->right == nullptr) {
+                // Print root node
+                if (k == 1)
+                    return curr;
+                k--;
+                curr = curr->left;
+            } else {
+                // Finding the inorder successor
+                Node* prev = curr->right;
+                while (prev->left != nullptr && prev->left != curr)
+                    prev = prev->left;
+
+                if (prev->left == nullptr) {
+                    prev->left = curr; // Making a thread and now move right
+                    curr = curr->right;
+                } else {
+                    prev->left = nullptr; // Remove it, as the thread is already present
+                    if (k == 1)
+                        return curr;
+                    k--;
+                    curr = curr->left;
+                }
+            }
         }
+        return nullptr;
     }
 };
+ 
 
 //{ Driver Code Starts.
 
