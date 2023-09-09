@@ -98,27 +98,52 @@ class GFG {
 
 // User function Template for Java
 
-class Solution{
+// class Solution{
     
-    // The function returns the root of the BST (currently rooted at 'root') 
-    // after inserting a new Node with value 'Key' into it. 
-    Node insert(Node root, int key)
-    {
-        // your code here
+//     // The function returns the root of the BST (currently rooted at 'root') 
+//     // after inserting a new Node with value 'Key' into it. 
+//     Node insert(Node root, int key)
+//     {
+//         // your code here
         
-        if(root ==null)
-        root = new Node(key);
+//         if(root ==null)
+//         root = new Node(key);
         
         
-        if(key < root.data)
-        {
+//         if(key < root.data)
+//         {
             
-           root.left =  insert(root.left , key);
+//           root.left =  insert(root.left , key);
+//         }
+//         else if(key  > root.data)
+//         {
+//             root.right = insert(root.right , key);
+//         }
+//         return root;
+//     }
+// }
+
+class Solution {
+    // Function to insert a node in a BST.
+    Node insert(Node root, int x) {
+        Node temp=new Node(x);
+        Node parent=null,curr=root;
+        while(curr!=null){
+            parent=curr;
+            if(curr.data>x)
+                curr=curr.left;
+            else if(curr.data<x)
+                curr=curr.right;
+            else  // node already present , do not make any change in BST
+                return root;
         }
-        else if(key  > root.data)
-        {
-            root.right = insert(root.right , key);
-        }
+        // decide the node to be placed on left or right.
+        if(parent==null) // empty BST is passed.
+            return temp;
+        if(parent.data>x)
+            parent.left=temp;
+        else
+            parent.right=temp;
         return root;
     }
 }
