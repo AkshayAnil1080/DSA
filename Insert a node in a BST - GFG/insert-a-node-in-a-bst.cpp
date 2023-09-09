@@ -32,20 +32,49 @@ struct Node {
 };
 */
 
+// class Solution
+// {
+//     public:
+//         Node* insert(Node* root, int key) {
+        
+//          if (root == nullptr) 
+//             root = new Node(key);
+            
+//         else if (key < root->data) 
+//             root->left = insert(root->left, key);
+            
+//         else if (key > root->data)
+//             root->right = insert(root->right, key);
+    
+//         return root;
+//     }
+
+// };
+
 class Solution
 {
     public:
-        Node* insert(Node* root, int key) {
+        Node* insert(Node* root, int x) {
         
-         if (root == nullptr) 
-            root = new Node(key);
-            
-        else if (key < root->data) 
-            root->left = insert(root->left, key);
-            
-        else if (key > root->data)
-            root->right = insert(root->right, key);
-    
+             Node* temp = new Node(x);
+        Node* parent = nullptr;
+        Node* curr = root;
+        while (curr != nullptr) {
+            parent = curr;
+            if (curr->data > x)
+                curr = curr->left;
+            else if (curr->data < x)
+                curr = curr->right;
+            else  // Node already present, do not make any change in BST.
+                return root;
+        }
+        // Decide the node to be placed on the left or right.
+        if (parent == nullptr) // Empty BST is passed.
+            return temp;
+        if (parent->data > x)
+            parent->left = temp;
+        else
+            parent->right = temp;
         return root;
     }
 
