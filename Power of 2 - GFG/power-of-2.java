@@ -31,7 +31,7 @@ class Driver_class
 
 
 //User function Template for Java
-//logN
+//logN, 1
 // class Solution{
     
 //     // Function to check if given number n is a power of two.
@@ -50,24 +50,36 @@ class Driver_class
     
 // }
 
-// logN
+// logN , 1
+// class Solution{
+    
+//     // Function to check if given number n is a power of two.
+//     public static boolean isPowerofTwo(long n){
+//       long count  = 0;
+//         while(n > 0)
+//         {
+//             count +=  (n & 1);
+//             n = n /2;   // n>>1;
+//         }
+        
+//       if(count == 1)
+//       return true;
+//       else
+//       return false;
+       
+        
+//     }
+    
+// }
+// O(1), O(1)
 class Solution{
     
     // Function to check if given number n is a power of two.
     public static boolean isPowerofTwo(long n){
-      long count  = 0;
-        while(n > 0)
-        {
-            count +=  (n & 1);
-            n = n /2;   // n>>1;
-        }
         
-      if(count == 1)
-      return true;
-      else
-      return false;
-       
+        if(n>0 && (n&(n-1))==0)
+        return true;
         
+        return false;
     }
-    
 }
