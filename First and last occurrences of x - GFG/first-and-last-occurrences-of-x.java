@@ -11,31 +11,92 @@ import java.util.*;
 //User function Template for Java
 
 
+// class GFG
+// {
+//     ArrayList<Integer> find(int arr[], int n, int x)
+//     {
+//         // code here
+//         int first=-1, last=-1;
+//         for(int i=0; i<n; i++)
+//         {
+//             if(arr[i]==x)
+//             {
+//                 if(first==-1)
+//                 first=i;
+                
+//                 last=i;
+//             }
+//         }
+//         ArrayList<Integer> al = new ArrayList<Integer>();
+//         al.add(first); al.add(last);
+        
+//         return al; 
+//     }
+// }
+
 class GFG
 {
     ArrayList<Integer> find(int arr[], int n, int x)
     {
-        // code here
-        int first=-1, last=-1;
-        for(int i=0; i<n; i++)
-        {
-            if(arr[i]==x)
-            {
-                if(first==-1)
-                first=i;
-                
-                last=i;
-            }
-        }
-        ArrayList<Integer> al = new ArrayList<Integer>();
+
+     int  first = l_idx(arr, x);
+    int last = h_idx(arr,x);
+        
+         ArrayList<Integer> al = new ArrayList<Integer>();
         al.add(first); al.add(last);
         
         return al; 
+        
     }
+    int h_idx(int arr[], int x)
+    {
+        int n = arr.length;
+        int idx=-1;
+        int low=0; int high=n-1;
+        while(low<=high)
+        {
+            int mid = (low+high)/2;
+            if(arr[mid] > x)
+            high = mid-1;
+            
+            else if(arr[mid]==x)
+            {
+                idx=mid; low=mid+1;
+            }
+            
+            // if(arr[mid] < x)
+            else
+            low= mid+1;
+            
+        }
+        return idx;
+    }
+    
+    int l_idx(int arr[], int x)
+    {
+        int n = arr.length;
+        int idx=-1;
+        int low=0; int high=n-1;
+        while(low<=high)
+        {
+            int mid = (low+high)/2;
+            if(arr[mid] > x)
+            high = mid-1;
+            
+            else if(arr[mid]==x)
+            {
+             idx=mid; high=mid-1;
+            }
+            
+            // if(arr[mid] < x)
+            else
+            low= mid+1;
+            
+        }
+         return idx;
+    }
+    
 }
-
-
-
 
 //{ Driver Code Starts.
 
