@@ -24,36 +24,63 @@ class Node{
 class Solution
 {
     //Function to find the nodes that are common in both BST.
-    static HashSet<Integer> set;
-    static  ArrayList<Integer> ans ;
 	public static ArrayList<Integer> findCommon(Node root1,Node root2)
     {
-        set= new HashSet<>();
-        ans = new ArrayList<Integer>();
-        in(root1);
-        in_dup(root2);
-        return ans;
-    }
-   static void in(Node root)
-    {
-        if(root!=null)
+       ArrayList<Integer> res = new ArrayList<Integer>();
+        Stack<Node> s1 = new Stack<Node> ();  
+        Stack<Node> s2 = new Stack<Node> (); 
+        
+        while(true)
         {
-            in(root.left);
-             set.add(root.data);
-             in(root.right);
+            if(root1!=null)
+            {
+                s1.push(root1);  
+                root1 = root1.left;  
+            }
+            else if(root2!=null)
+            {
+                s2.push(root2);  
+                root2 = root2.left;
+            }
+            //compare the peek values- 3 more nested if else
+            else if (!s1.isEmpty() && !s2.isEmpty())
+            {
+                root1 = s1.peek();  
+                root2 = s2.peek(); 
+                
+                if (root1.data == root2.data)  
+                {
+                     res.add(root1.data);
+                    s1.pop();  
+                    s2.pop();  
+      
+                    root1 = root1.right;  
+                    root2 = root2.right;  
+                
+                }
+                else if (root1.data < root2.data)  
+                // pop smaller and move right(as in order)- since asc, we can get higher nodes to compare
+                {
+                    s1.pop();  
+                    root1 = root1.right;  
+                    root2 = null;  //settin null here cause we need nodes from root1
+                }
+                else if (root1.data > root2.data)  
+                {
+                    s2.pop();  
+                    root2 = root2.right; 
+                    root1 = null;  //settin null here cause we need nodes from root2
+                }
+            
+            }
+            else //means one of the stack has become empty
+            break;
         }
-    }
-    static void in_dup(Node root)
-    {
-        if(root!=null)
-        {
-            in_dup(root.left);
-             if(set.contains(root.data))
-             ans.add(root.data);
-             in_dup(root.right);
-        }
+        return res;
     }
 }
+
+
 
 //{ Driver Code Starts.
 class GFG
