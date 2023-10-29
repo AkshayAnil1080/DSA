@@ -9,23 +9,36 @@ import java.util.*;
 //User function Template for Java
 
 
+// class CheckBit
+// {
+//     // Function to check if Kth bit is set or not.
+//     static boolean checkKthBit(int n, int k)
+//     {
+        
+//       while(k>0)
+//       {
+//           n=n/2;
+//           k--;
+//       }
+//       if((n&1)==1)
+//       return true;
+       
+//       return false;
+       
+   
+//     }
+    
+// }
+
 class CheckBit
 {
     // Function to check if Kth bit is set or not.
     static boolean checkKthBit(int n, int k)
-    {
-        
-       while(k>0)
-       {
-           n=n/2;
-           k--;
-       }
-       if((n&1)==1)
-       return true;
-       
-       return false;
-       
-   
+    {  
+     if( (n&(1<<(k))) != 0)
+            return true;
+            
+            return false;
     }
     
 }
