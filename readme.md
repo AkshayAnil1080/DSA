@@ -1,4 +1,4 @@
-# Accelerating_My_Dream_With_Techdose
+# Accelerating
 
 <a href="https://docs.google.com/spreadsheets/d/16inAAzZOHSR7SxpCyNui_tiqwa_NrrUNB4yC5rwU6J4/edit#gid=0">My Assignment Link</a>
 
