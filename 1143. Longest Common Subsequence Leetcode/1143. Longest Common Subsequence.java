@@ -21,7 +21,7 @@ class Solution {
 print the LCS
         StringBuilder sb = new StringBuilder();
         int i=m, j=n;
-        while(i<0 && j<0){
+       while(i>0 && j>0){
             if(t1.charAt(i-1) == t2.charAt(j-1)){
                 sb.append(t1.charAt(i-1));
                 i--; j--; //diagonal
