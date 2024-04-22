@@ -19,24 +19,67 @@ class GFG {
 
 
 //User function Template for Java
+//1. Recursion - O(2^n)
+class Solution { 
+    static long mod = 1000000007;
+    static long nthFibonacci(long n){
+        // code here
+        
+        return fib(n);
+    }
+    static long fib(long n)
+    {
+        if(n==0 || n==1)
+        return n;
+        
+        return (fib(n-1)%mod + fib(n-2)%mod)%mod ;
+    }
+}
+2. DP - Tabulation , Memoization - O(n), O(n)
+class Solution {
+    static long mod = 1000000007;
+    static long memo[];
+    static long nthFibonacci(long n){
+        // code here
+        memo  = new long[(int)n+1];
+        Arrays.fill(memo,-1);
+        return fib(n);
+    }
+    static long fib(long n)
+    {
+        long res =0;
+        if(memo[(int)n]==-1)
+        {
+            if(n==0 || n==1)
+            res = n;
+            
+            else
+             res = (fib(n-1)%mod + fib(n-2)%mod)%mod ;
+             
+             memo[(int)n] = res;
+        }
+        return memo[(int)n];
+        
+    }
+}
 
-//User function Template for Java
-// class Solution {
-//   static long mod = 1000000007;
+// 3. O(n), O(1)
+class Solution {
+  static long mod = 1000000007;
    
-//     static long nthFibonacci(long n){
-//         // code here
-//       long a =0;long b=1; long c =0;
-//       for(int i =2; i<=n; i++)
-//       {
-//           c=(a%mod+b%mod)%mod;
-//           a=b%mod;
-//           b=c%mod;
-//       }
-//       return c%mod;
-//     }    
-// }
-
+    static long nthFibonacci(long n){
+        // code here
+      long a =0;long b=1; long c =0;
+      for(int i =2; i<=n; i++)
+      {
+          c=(a%mod+b%mod)%mod;
+          a=b%mod;
+          b=c%mod;
+      }
+      return c%mod;
+    }    
+}
+// 4. O(logN), O(ht of recursive stack)
 class Solution {
      static long m = 1000000007;
      static long nthFibonacci(long N){ 
