@@ -1,0 +1,54 @@
+
+1. Prefix:
+A prefix is any substring that starts from the beginning (first character) of the string and goes up to any position within the string, but must include the first character.
+
+Example:
+For the string "abcdef":
+
+Prefixes are:
+
+"a"
+"ab"
+"abc"
+"abcd"
+"abcde"
+"abcdef"
+Proper prefix: A prefix that is not equal to the entire string itself.
+
+Proper prefixes of "abcdef" are:
+"a", "ab", "abc", "abcd", "abcde"
+"abcdef" is not a proper prefix because it is the whole string.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Suffix:
+A suffix is any substring that ends at the last character of the string and starts at any position within the string, but must include the last character.
+
+Example:
+For the string "abcdef":
+
+Suffixes are:
+
+"f"
+"ef"
+"def"
+"cdef"
+"bcdef"
+"abcdef"
+Proper suffix: A suffix that is not equal to the entire string itself.
+
+Proper suffixes of "abcdef" are:
+"f", "ef", "def", "cdef", "bcdef"
+"abcdef" is not a proper suffix because it is the entire string.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Visual Comparison:
+For the string "abcde":
+
+Prefixes (start from the beginning): "a", "ab", "abc", "abcd", "abcde"
+Suffixes (end at the last character): "e", "de", "cde", "bcde", "abcde"
+Key Differences:
+Prefix: Starts from the first character and can go up to any position, including the entire string.
+Suffix: Starts from any position but ends at the last character of the string.
+
+
