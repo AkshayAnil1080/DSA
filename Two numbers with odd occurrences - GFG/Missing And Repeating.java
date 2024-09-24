@@ -54,7 +54,7 @@ class Solve {
         //return the ans in order of ele
         int ans[] = new int[2];
          for(int i = 0; i<n; i++){
-         if(g1==arr[i]){
+         if(g1==arr[i]){ // if g1 is repeating, we will get in array
              ans[0] = g1;
              ans[1] = g2;
              return ans;
@@ -62,8 +62,8 @@ class Solve {
          }
      
      
-       ans[0] = g1;
-        ans[1] = g2;
+       ans[0] = g2;
+        ans[1] = g1;
         
         return ans;
     }
