@@ -45,8 +45,17 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/AkshayAnil1080/DSA/tree/master/0003-longest-substring-without-repeating-characters) |
+| [0394-decode-string](https://github.com/AkshayAnil1080/DSA/tree/master/0394-decode-string) |
 ## Sliding Window
 |  |
 | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/AkshayAnil1080/DSA/tree/master/0003-longest-substring-without-repeating-characters) |
+## Stack
+|  |
+| ------- |
+| [0394-decode-string](https://github.com/AkshayAnil1080/DSA/tree/master/0394-decode-string) |
+## Recursion
+|  |
+| ------- |
+| [0394-decode-string](https://github.com/AkshayAnil1080/DSA/tree/master/0394-decode-string) |
 <!---LeetCode Topics End-->
