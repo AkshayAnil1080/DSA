@@ -1,3 +1,7 @@
+
+Problem Link:
+https://www.geeksforgeeks.org/problems/coin-piles5152/1
+Code with Akshay - best video solution - https://youtu.be/izq80-PVEr8
 Coin Piles
 Difficulty: MediumAccuracy: 20.51%Submissions: 34K+Points: 4Average Time: 20m
 You are given an array arr[] of integers, where each element represents the number of coins in a pile. You are also given an integer k.
