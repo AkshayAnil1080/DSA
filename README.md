@@ -45,6 +45,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/AkshayAnil1080/DSA/tree/master/0003-longest-substring-without-repeating-characters) |
+| [0131-palindrome-partitioning](https://github.com/AkshayAnil1080/DSA/tree/master/0131-palindrome-partitioning) |
 | [0394-decode-string](https://github.com/AkshayAnil1080/DSA/tree/master/0394-decode-string) |
 ## Sliding Window
 |  |
@@ -58,4 +59,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0394-decode-string](https://github.com/AkshayAnil1080/DSA/tree/master/0394-decode-string) |
+## Dynamic Programming
+|  |
+| ------- |
+| [0131-palindrome-partitioning](https://github.com/AkshayAnil1080/DSA/tree/master/0131-palindrome-partitioning) |
+## Backtracking
+|  |
+| ------- |
+| [0131-palindrome-partitioning](https://github.com/AkshayAnil1080/DSA/tree/master/0131-palindrome-partitioning) |
 <!---LeetCode Topics End-->
