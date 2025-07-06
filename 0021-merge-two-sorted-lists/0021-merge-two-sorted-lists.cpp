@@ -10,23 +10,30 @@
 // **/
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        return merge(list1, list2);
-    }
+    ListNode* mergeTwoLists(ListNode* h1, ListNode* h2) {
+        // 1. Create a dummy node to track the head of the resultant list
+        ListNode* dummy = new ListNode(-1);
+        ListNode* curr = dummy;
 
-private:
-    ListNode* merge(ListNode* h1, ListNode* h2) {
-        // If either list is empty, return the non-empty list
-        if (h1 == nullptr) return h2;
-        if (h2 == nullptr) return h1;
-
-        // Recursive case
-        if (h1->val <= h2->val) {
-            h1->next = merge(h1->next, h2);
-            return h1;
-        } else {
-            h2->next = merge(h1, h2->next);
-            return h2;
+        // 2. Traverse both lists and append the smaller node
+        while (h1 != nullptr && h2 != nullptr) {
+            if (h1->val <= h2->val) {
+                curr->next = h1;
+                h1 = h1->next;
+            } else {
+                curr->next = h2;
+                h2 = h2->next;
+            }
+            curr = curr->next;
         }
+
+        // 3. Append the remaining part of either list
+        if (h1 != nullptr) {
+            curr->next = h1;
+        } else {
+            curr->next = h2;
+        }
+
+        return dummy->next;
     }
 };
