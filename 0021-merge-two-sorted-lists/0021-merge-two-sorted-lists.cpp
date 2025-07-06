@@ -7,37 +7,26 @@
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
- */
+// **/
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        vector<int> values;
+        return merge(list1, list2);
+    }
 
-        // Traverse list1
-        ListNode* curr = list1;
-        while (curr != nullptr) {
-            values.push_back(curr->val);
-            curr = curr->next;
+private:
+    ListNode* merge(ListNode* h1, ListNode* h2) {
+        // If either list is empty, return the non-empty list
+        if (h1 == nullptr) return h2;
+        if (h2 == nullptr) return h1;
+
+        // Recursive case
+        if (h1->val <= h2->val) {
+            h1->next = merge(h1->next, h2);
+            return h1;
+        } else {
+            h2->next = merge(h1, h2->next);
+            return h2;
         }
-
-        // Traverse list2
-        curr = list2;
-        while (curr != nullptr) {
-            values.push_back(curr->val);
-            curr = curr->next;
-        }
-
-        // Sort all values
-        sort(values.begin(), values.end());
-
-        // Create new sorted list from vector
-        ListNode* dummy = new ListNode(-1);
-        curr = dummy;
-        for (int val : values) {
-            curr->next = new ListNode(val);
-            curr = curr->next;
-        }
-
-        return dummy->next;
     }
 };
