@@ -10,40 +10,37 @@
  */
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        ListNode* res = nullptr;
+    struct compare {
+        bool operator()(ListNode* a, ListNode* b) {
+            return a->val > b->val;  // min-heap: smallest value comes first
+        }
+    };
 
-        for (ListNode* curr : lists) {
-            res = merge(res, curr);
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, compare> minHeap;
+
+        // Step 1: Push head of each non-null list into the heap
+        for (ListNode* node : lists) {
+            if (node != nullptr) {
+                minHeap.push(node);
+            }
         }
 
-        return res;
-    }
-
-private:
-    // Merge two sorted linked lists
-    ListNode* merge(ListNode* h1, ListNode* h2) {
-        // 1. Dummy node to build merged list
+        // Step 2: Dummy node for result list
         ListNode* dummy = new ListNode(-1);
         ListNode* curr = dummy;
 
-        // 2. Merge both lists
-        while (h1 != nullptr && h2 != nullptr) {
-            if (h1->val <= h2->val) {
-                curr->next = h1;
-                h1 = h1->next;
-            } else {
-                curr->next = h2;
-                h2 = h2->next;
-            }
-            curr = curr->next;
-        }
+        // Step 3: Build the merged list
+        while (!minHeap.empty()) {
+            ListNode* smallest = minHeap.top();
+            minHeap.pop();
 
-        // 3. Attach remaining part
-        if (h1 != nullptr) {
-            curr->next = h1;
-        } else {
-            curr->next = h2;
+            curr->next = smallest;
+            curr = curr->next;
+
+            if (smallest->next != nullptr) {
+                minHeap.push(smallest->next);
+            }
         }
 
         return dummy->next;
