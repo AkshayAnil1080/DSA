@@ -1,0 +1,73 @@
+/*
+
+Author : Deven Nandapurkar
+
+Date : 12/05/2023
+
+Problem : Array Operations
+
+Difficulty : Easy
+
+Problem Link : https://practice.geeksforgeeks.org/problems/3a93b6a25a7b88e4c80a1fee00898fd8022eb108/1
+
+You are given an array arr of n integers. You must return the minimum number of operations required to make this array 0. For this you can do an operation :
+  -> Choose a sub-array of non-zero elements & replace all with 0(0 must be present in arr, if not you can not replace it).
+
+Cpp Solution 👇👇
+
+*/
+
+
+class Solution {
+  public:
+    int arrayOperations(int n, vector<int> &arr) {
+        // code here 
+        
+        int ans = 0;
+        int curr = 0;
+        for(int i = 0; i < n; ++i){
+            if(arr[i] == 0){
+                curr++;
+                
+            if(i > 0 && arr[i-1] != 0) 
+                ans++;
+            }
+        }    
+        if(arr[n-1] != 0) ans++;
+        
+        if(curr == n) 
+            return 0;
+            
+        if(curr == 0) 
+            return -1;
+            
+        return ans;
+    }
+};
+
+
+// Solution works only for 2 test cases hence discarded. 
+
+/*
+class Solution {
+  public:
+    int arrayOperations(int n, vector<int> &arr) {
+        int ans = 0;
+        int current = 0;
+        
+        for(int i = 0; i < n; i++){
+            if(arr[i] == 0){
+                ans += current > 0;
+                current = 0;
+                continue;
+            }
+            
+            ++current;
+        }
+        
+        ans += current > 0;
+        
+        return ans;
+    }
+};
+*/ 

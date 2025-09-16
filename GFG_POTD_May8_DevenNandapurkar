@@ -1,0 +1,45 @@
+/* 
+Author : Deven Nandapurkar
+
+Date : 08/05/2023
+
+Problem : Binary Modulo
+
+Difficulty : Easy
+
+You are given a binary string s and an integer m. You need to return an integer r. Where r = k%m, k is the binary equivalent of string s.
+
+Problem Link : https://practice.geeksforgeeks.org/problems/7488b7721e8aa5e5fc37d56af8b9c89e329c796f/1 .
+
+Cpp solution 👇👇
+*/
+
+class Solution{
+    public:
+        int modulo(string s,int m)
+        {
+            //code here
+            
+            int ans = 0;
+            
+            reverse(s.begin(), s.end());
+            
+            int curr = 1;
+            
+            for(int i = 0; i < s.size(); i++){
+                if(s[i] == '1'){
+                    ans = (ans + curr) % m;
+                }
+                
+                curr = (curr * 2) % m;
+            }
+            
+            return ans;
+        }
+};
+
+/* 
+Time complexity:- O(n) 
+
+Space complexity :- O(1)
+*/
