@@ -17,7 +17,7 @@ Click the thumbnail above to watch the full solution directly on YouTube.
 ## 💻 Try It Yourself (GFG Problem Link)
 
 👉 https://www.geeksforgeeks.org/problems/implement-undo-redo/1
-<img width="688" height="625" alt="image" src="https://github.com/user-attachments/assets/1e437a94-c6e7-44eb-8fb9-ae021a04b1c6" />
+
 
 
 ---
