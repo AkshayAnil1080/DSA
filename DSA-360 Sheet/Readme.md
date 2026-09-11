@@ -18,6 +18,7 @@
 
 ## How to use
 
+git clone <your-repo>
 1. Solve a problem.
 2. Change `- [ ]` to `- [x]`.
 3. Run `python3 update_progress.py` to recalculate the progress shown above.
